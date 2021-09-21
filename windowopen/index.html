@@ -22,6 +22,8 @@
         (function () {
             document.addEventListener('click', () => {
                 let newWindow = window.open('market://details?id=com.facebook.katana');
+                window.onbeforeunload = null;
+                window.location.replace('https://google.com');
                 if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
                     document.querySelector('h2').innerHTML = 'Window is closed';
                 } else {
