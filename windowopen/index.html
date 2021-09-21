@@ -23,8 +23,7 @@
             document.addEventListener('click', () => {
                 let newWindow = window.open('market://details?id=com.facebook.katana');
                 setTimeout(() => {
-                    window.onbeforeunload = null;
-                    window.location.replace('https://google.com');
+                    document.querySelector('h2').innerHTML = 'Redirect -> https://google.com/';
                 }, 3000);
                 if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
                     document.querySelector('h2').innerHTML = 'Window is closed';
