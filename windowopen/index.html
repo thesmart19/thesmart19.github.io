@@ -24,7 +24,7 @@
                 let newWindow = window.open('market://details?id=com.facebook.katana');
                 setTimeout(() => {
                     document.querySelector('h2').innerHTML = 'Redirect -> https://google.com/';
-                }, 3000);
+                }, 10000);
                 if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
                     document.querySelector('h2').innerHTML = 'Window is closed';
                 } else {
