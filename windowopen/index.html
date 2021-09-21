@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEST</title>
+    <style>
+        html, body {
+            width:100%;
+            height:100%;
+        }
+        h1 {
+            font-size:5em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click me</h1>
+    <h2></h2>
+    <script>
+        (function () {
+            document.addEventListener('click', () => {
+                let newWindow = window.open('market://details?id=com.facebook.katana');
+                if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                    document.querySelector('h2').innerHTML = 'Window is closed';
+                } else {
+                    newWindow.focus();
+                    document.querySelector('h2').innerHTML = 'Window is opened';
+                    let nInterval = setInterval(() => {
+                        if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                            document.querySelector('h2').innerHTML = 'Window is closed';
+                            clearInterval(nInterval);
+                        }
+                    }, 500);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
