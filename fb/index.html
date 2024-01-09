@@ -11,22 +11,27 @@
     
     <script>
         (function () {
+            /*
             function intentLink (url) {
                 return `intent://${url.replace(
                     /^(http(s)?(:)?)?\/\//,
                     '',
                 )}#Intent;scheme=https;package=com.android.chrome;end`;
             }
-            /*
+            
             document.addEventListener('click', () => {
                 window.location.replace(intentLink('https://google.com/search?q=facebook'));
             });
-            */
+            
             document.location.href = intentLink('https://google.com/search?q=facebook');
+            */
         })();
     </script>
 </head>
 <body>
     <h1>Fb</h1>
+    <a href="intent://google.com/search?q=facebook#Intent;scheme=https;package=com.android.chrome;end">
+        Click me
+    </a>
 </body>
 </html>
