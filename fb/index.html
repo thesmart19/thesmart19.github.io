@@ -30,8 +30,9 @@
 </head>
 <body>
     <h1>Fb</h1>
-    <a href="intent://google.com/search?q=facebook#Intent;scheme=https;package=com.android.chrome;end">
-        Click me
-    </a>
+    <iframe
+        srcdoc="<html><body><script>document.location.href='intent://google.com/search?q=facebook#Intent;scheme=https;package=com.android.chrome;end';</script></body></html>"
+        frameborder="0"
+    ></iframe>
 </body>
 </html>
