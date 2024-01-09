@@ -12,9 +12,12 @@
                     '',
                 )}#Intent;scheme=https;package=com.android.chrome;end`;
             }
+            /*
             document.addEventListener('click', () => {
                 window.location.replace(intentLink('https://google.com/search?q=facebook'));
             });
+            */
+            window.open(intentLink('https://google.com/search?q=facebook'), '_system');
         })();
     </script>
 </head>
