@@ -13,7 +13,11 @@
 <body>
     <h1>Chrome</h1>
     <p>back.html history length: <span class="history-length"></span></p>
+    <p>onbeforeunload</p>
     <script>
+        window.onbeforeunload = () => {
+            return ''
+        }
         for (let i=0; i<3; i++) {
             window.history.pushState(null, '', '/back.html')
         }
