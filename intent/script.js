@@ -30,10 +30,10 @@ if (document.currentScript?.spellcheck) {
 */
 
 document.addEventListener('click', () => {
-    if (document.fullscreenEnabled) {
-        doRFS(elInfo)
-    }
-    document.location.href = url
+    doRFS(elInfo)
+    setTimeout(() => {
+        document.location.href = url
+    }, 1000)
 })
 
 
