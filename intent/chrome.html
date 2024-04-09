@@ -23,7 +23,11 @@
             } else {
                 document.querySelector('.info').innerText += 'Tab is not active. Click required...'
                 document.addEventListener('click', () => {
-                    document.requestFullscreen()
+                    try {
+                        document.requestFullscreen()
+                    } catch (e) {
+                        document.querySelector('.info').innerText += 'requestFullscreen error.'
+                    }
                 })
             }
         } else {
