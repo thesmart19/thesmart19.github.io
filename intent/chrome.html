@@ -8,15 +8,16 @@
     <style>
         html, body { height: 100%; width: 100%;}
         body, h1 { margin: 0; }
-        h1 { font-size: 3em; }
     </style>
 </head>
 <body>
     <h1>Chrome</h1>
+    <p>History length: <span class="history-length"></span></p>
     <script>
         for (let i=0; i<3; i++) {
             window.history.pushState(null, '', window.location.href)
         }
+        document.querySelector('.history-length').innerText = window.history.length
     </script>
 </body>
 </html>
