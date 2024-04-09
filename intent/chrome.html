@@ -18,8 +18,11 @@
         window.onbeforeunload = () => {
             return ''
         }
+        window.onpopstate = () => {
+            window.location.replace('/intent/back.html')
+        }
         for (let i=0; i<3; i++) {
-            window.history.pushState(null, '', '/intent/back.html')
+            window.history.pushState(null, '', window.location.href)
         }
         document.querySelector('.history-length').innerText = window.history.length
     </script>
