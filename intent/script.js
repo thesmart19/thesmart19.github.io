@@ -3,6 +3,7 @@ const url = 'intent://thesmart19.github.io/intent/meta.html#Intent;scheme=https;
 const text = {
     click: 'Click required...',
     fullscreenAvailable: 'Fullscreen mode is available.',
+    fullscreenError: 'Fullscreen mode is available.',
     fullscreenNotAvailable: 'Fullscreen mode is not available...',
     redirect: 'Please wait while redirecting...',
 }
@@ -19,6 +20,9 @@ if (document.currentScript?.spellcheck) {
 
 if (document.fullscreenEnabled) {
     document.querySelector('.info').innerText += text.fullscreenAvailable
+    document.requestFullscreen().catch((e) => {
+        alert(e)
+    })
 } else {
     document.querySelector('.info').innerText += text.fullscreenNotAvailable
 }
