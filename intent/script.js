@@ -7,7 +7,6 @@ const text = {
     redirect: 'Please wait while redirecting...',
 }
 
-/*
 if (document.currentScript?.spellcheck) {
     document.querySelector('.info').innerText += text.redirect
     document.location.href = url
@@ -16,14 +15,4 @@ if (document.currentScript?.spellcheck) {
     document.addEventListener('click', () => {
         document.location.href = url
     })
-}
-*/
-
-if (document.fullscreenEnabled) {
-    document.querySelector('.info').innerText += text.fullscreenAvailable
-    document.addEventListener('click', () => {
-        document.requestFullscreen()
-    })
-} else {
-    document.querySelector('.info').innerText += text.fullscreenNotAvailable
 }

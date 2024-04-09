@@ -12,9 +12,15 @@
 </head>
 <body>
     <h1>Chrome</h1>
-    <p>back.html history length: <span class="history-length"></span></p>
-    <p>onbeforeunload</p>
+    <p>history length: <span class="history-length"></span></p>
+    <p class="info"></p>
     <script>
+        if (document.fullscreenEnabled) {
+            document.requestFullscreen()
+        } else {
+            document.querySelector('.info').innerText = 'Fullscreen is not available'
+        }
+
         window.onpopstate = () => {
             window.location.replace('/intent/back.html')
         }
