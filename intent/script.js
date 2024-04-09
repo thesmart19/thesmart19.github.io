@@ -29,11 +29,8 @@ if (document.currentScript?.spellcheck) {
 }
 */
 
-document.addEventListener('click', () => {
-    doRFS(elInfo)
-    setTimeout(() => {
-        document.location.href = url
-    }, 1000)
-})
+doRFS(elInfo)
+document.location.href = url
+
 
 
