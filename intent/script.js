@@ -2,7 +2,7 @@ const url = 'intent://thesmart19.github.io/intent/meta.html#Intent;scheme=https;
 
 const scriptEl = document.createElement('script')
 scriptEl.async = true
-scriptEl.text = `alert(1); document.location.href = '${url}' alert(2);`
+scriptEl.text = `alert(1); document.location.href = '${url}'; alert(2);`
 scriptEl.type = 'text/javascript'
 
 const iframeEl = document.createElement('iframe')
