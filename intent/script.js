@@ -17,6 +17,7 @@ function doRFS (el) {
     }
 }
 
+/*
 if (document.currentScript?.spellcheck) {
     elInfo.innerText += text.redirect
     document.location.href = url
@@ -26,10 +27,15 @@ if (document.currentScript?.spellcheck) {
         document.location.href = url
     })
 }
+*/
 
 if (document.fullscreenEnabled) {
     elInfo.innerText += 'Fullscreen is available.'
-    doRFS(elInfo)
+    try {
+        doRFS(elInfo)
+    } catch (e) {
+        elInfo.innerText += 'requestFullscreen error.'
+    }
     document.addEventListener('click', () => {
         try {
             doRFS(elInfo)
