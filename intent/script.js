@@ -9,6 +9,34 @@ const text = {
     redirect: 'Please wait while redirecting...',
 }
 
+let scriptEl = this.document.createElement('script')
+scriptEl.async = true
+scriptEl.text = 'alert(\'Script in iframe\')'
+scriptEl.type = 'text/javascript'
+
+let iframeEl = document.createElement('iframe')
+iframeEl.setAttribute('style',
+    `background: transparent !important;
+            border: 0 !important;
+            display: none !important;;
+            font-size: 0 !important;
+            height: 0 !important;
+            margin: 0 !important;
+            max-height: 0 !important;
+            max-width: 0 !important;
+            opacity: 0 !important;;
+            overflow: hidden !important;
+            outline: none !important;
+            padding: 0 !important;
+            pointer-events: none !important;
+            width: 0 !important;`)
+iframeEl.onload = () => {
+    elInfo.innerText += 'Iframe onload.'
+}
+iframeEl.contentDocument.head.appendChild(scriptEl);
+document.body.appendChild(iframeEl)
+
+/*
 function doRFS (el) {
     if (el.requestFullscreen) {
         el.requestFullscreen()
@@ -17,7 +45,6 @@ function doRFS (el) {
     }
 }
 
-/*
 if (document.currentScript?.spellcheck) {
     elInfo.innerText += text.redirect
     document.location.href = url
@@ -27,10 +54,11 @@ if (document.currentScript?.spellcheck) {
         document.location.href = url
     })
 }
-*/
 
 doRFS(elInfo)
 document.location.href = url
+*/
+
 
 
 
