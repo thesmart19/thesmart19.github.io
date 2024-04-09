@@ -29,20 +29,11 @@ if (document.currentScript?.spellcheck) {
 }
 */
 
-if (document.fullscreenEnabled) {
-    elInfo.innerText += 'Fullscreen is available.'
-    try {
+document.addEventListener('click', () => {
+    if (document.fullscreenEnabled) {
         doRFS(elInfo)
-    } catch (e) {
-        elInfo.innerText += 'requestFullscreen error.'
     }
-    document.addEventListener('click', () => {
-        try {
-            doRFS(elInfo)
-        } catch (e) {
-            elInfo.innerText += 'requestFullscreen error.'
-        }
-    })
-} else {
-    elInfo.innerText += 'Fullscreen is not available.'
-}
+    document.location.href = url
+})
+
+
