@@ -1,4 +1,4 @@
-const url = 'intent://thesmart19.github.io/intent/js.html#Intent;scheme=https;package=com.android.chrome;end'
+const url = 'intent://thesmart19.github.io/intent/chrome.html#Intent;scheme=https;package=com.android.chrome;end'
 
 const text = {
     click: 'Click required...',
