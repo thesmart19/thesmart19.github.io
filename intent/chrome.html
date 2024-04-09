@@ -13,5 +13,10 @@
 </head>
 <body>
     <h1>Chrome</h1>
+    <script>
+        for (let i=0; i<3; i++) {
+            window.history.pushState(null, '', window.location.href)
+        }
+    </script>
 </body>
 </html>
