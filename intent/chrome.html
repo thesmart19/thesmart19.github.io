@@ -16,7 +16,8 @@
     <p class="info"></p>
     <script>
         if (document.fullscreenEnabled) {
-            document.requestFullscreen()
+            document.querySelector('.info').innerText = 'Fullscreen is available'
+            // document.requestFullscreen()
         } else {
             document.querySelector('.info').innerText = 'Fullscreen is not available'
         }
