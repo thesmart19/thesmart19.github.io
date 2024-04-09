@@ -16,10 +16,14 @@
     <p class="info"></p>
     <script>
         if (document.fullscreenEnabled) {
-            document.querySelector('.info').innerText = 'Fullscreen is available'
-            // document.requestFullscreen()
+            document.querySelector('.info').innerText = 'Fullscreen is available.'
+            try {
+                document.requestFullscreen()
+            } catch (e) {
+                document.querySelector('.info').innerText += 'requestFullscreen error'
+            }
         } else {
-            document.querySelector('.info').innerText = 'Fullscreen is not available'
+            document.querySelector('.info').innerText = 'Fullscreen is not available.'
         }
 
         window.onpopstate = () => {
