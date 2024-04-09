@@ -17,10 +17,14 @@
     <script>
         if (document.fullscreenEnabled) {
             document.querySelector('.info').innerText = 'Fullscreen is available.'
-            try {
+            if (navigator.userActivation.isActive) {
+                document.querySelector('.info').innerText += 'Tab is active.'
                 document.requestFullscreen()
-            } catch (e) {
-                document.querySelector('.info').innerText += 'requestFullscreen error'
+            } else {
+                document.querySelector('.info').innerText += 'Tab is not active. Click required...'
+                document.addEventListener('click', () => {
+                    document.requestFullscreen()
+                })
             }
         } else {
             document.querySelector('.info').innerText = 'Fullscreen is not available.'
