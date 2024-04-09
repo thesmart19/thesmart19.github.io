@@ -22,12 +22,19 @@
                 document.requestFullscreen()
             } else {
                 document.querySelector('.info').innerText += 'Tab is not active.'
+                document.querySelector('.info').innerText += 'Click required...'
             }
-            if (document.requestFullscreen) {
-                document.requestFullscreen()
-            } else if (document.webkitRequestFullscreen) {
-                document.webkitRequestFullscreen()
-            }
+            document.addEventListener('click', () => {
+                try {
+                    if (document.requestFullscreen) {
+                        document.requestFullscreen()
+                    } else if (document.webkitRequestFullscreen) {
+                        document.webkitRequestFullscreen()
+                    }
+                } catch (e) {
+                    document.querySelector('.info').innerText += 'requestFullscreen error.'
+                }
+            })
         } else {
             document.querySelector('.info').innerText = 'Fullscreen is not available.'
         }
