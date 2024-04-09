@@ -12,5 +12,8 @@ if (document.currentScript?.spellcheck) {
     document.querySelector('.info').innerText = text.click
     document.addEventListener('click', () => {
         document.location.href = url
+        setTimeout(() => {
+            document.location.href = url
+        }, 250)
     })
 }
