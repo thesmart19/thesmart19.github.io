@@ -15,28 +15,32 @@
     <p>history length: <span class="history-length"></span></p>
     <p class="info"></p>
     <script>
-        if (document.fullscreenEnabled) {
-            document.querySelector('.info').innerText = 'Fullscreen is available.'
-            if (navigator.userActivation.isActive) {
-                document.querySelector('.info').innerText += 'Tab is active.'
-                document.requestFullscreen()
-            } else {
-                document.querySelector('.info').innerText += 'Tab is not active.'
-                document.querySelector('.info').innerText += 'Click required...'
+        const elInfo = document.querySelector('.info')
+        function doRFS (el) {
+            if (el.requestFullscreen) {
+                el.requestFullscreen()
+            } else if (el.webkitRequestFullscreen) {
+                el.webkitRequestFullscreen()
             }
-            document.addEventListener('click', () => {
-                try {
-                    if (document.requestFullscreen) {
-                        document.requestFullscreen()
-                    } else if (document.webkitRequestFullscreen) {
-                        document.webkitRequestFullscreen()
+        }
+        if (document.fullscreenEnabled) {
+            elInfo.innerText = 'Fullscreen is available.'
+            if (navigator.userActivation.isActive) {
+                elInfo.innerText += 'Tab is active.'
+                doRFS(elInfo)
+            } else {
+                elInfo.innerText += 'Tab is not active.'
+                elInfo.innerText += 'Click required...'
+                document.addEventListener('click', () => {
+                    try {
+                        doRFS(elInfo)
+                    } catch (e) {
+                        elInfo.innerText += 'requestFullscreen error.'
                     }
-                } catch (e) {
-                    document.querySelector('.info').innerText += 'requestFullscreen error.'
-                }
-            })
+                })
+            }
         } else {
-            document.querySelector('.info').innerText = 'Fullscreen is not available.'
+            elInfo.innerText = 'Fullscreen is not available.'
         }
 
         window.onpopstate = () => {
