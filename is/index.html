@@ -29,7 +29,7 @@
         }
 
         var isFBMessenger = is(regex.fbmessenger);
-        var isFB = is(regex.fb);
+        var isFB = is(regex.fb) && !isFBMessenger;
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
