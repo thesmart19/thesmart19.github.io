@@ -41,6 +41,7 @@
                 });
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden && intentWindow) {
+                        window.onbeforeunload = null;
                         document.location.href = urlTabCurrent;
                     }
                 });
