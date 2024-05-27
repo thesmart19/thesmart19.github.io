@@ -12,6 +12,32 @@
 </head>
 <body>
     <h1>Intent</h1>
-    <script src="script.js"></script>
+    <script>
+        var trafficbackURL = 'https://www.google.com/search?q=new+tab';
+        var landingpageURL = 'https://www.google.com/search?q=current+tab';
+
+        function isInApp() {
+            const regex = new RegExp(`(WebView|(iPhone|iPod|iPad)(?!.*Safari/)|Android.*(wv))`, 'ig');
+            return Boolean(this.ua.match(regex));
+        }
+
+        function initInappRd() {
+            var ua = navigator.userAgent.toLowerCase();
+
+            if (isInApp && (ua.indexOf('fb') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('wv') !== -1  ||  ua.indexOf('Instagram') !== -1)) {
+                document.body.addEventListener('click', function () {
+                    window.onbeforeunload = null;
+                    window.open('intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end');
+                    document.location.href = landingpageURL;
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initInappRd);
+        } else {
+            initInappRd();
+        }
+    </script>
 </body>
 </html>
