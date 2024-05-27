@@ -26,6 +26,8 @@
         var ua = navigator.userAgent;
 
         function is(ua, pattern) {
+            console.log(ua)
+            console.log(pattern)
             return Boolean(ua.match(new RegExp(pattern, 'ig')))
         }
 
