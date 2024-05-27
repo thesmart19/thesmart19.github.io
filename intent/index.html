@@ -51,12 +51,12 @@
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                // document.addEventListener('click', () => {
-                isIntentOpened = true;
-                window.onbeforeunload = null;
-                intentWindow = window.open(urlTabNew);
-                // document.location.href = urlTabNew;
-                // });
+                document.addEventListener('click', () => {
+                    isIntentOpened = true;
+                    window.onbeforeunload = null;
+                    intentWindow = window.open(urlTabNew);
+                    // document.location.href = urlTabNew;
+                });
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden && isIntentOpened) {
                         document.location.href = urlTabCurrent;
