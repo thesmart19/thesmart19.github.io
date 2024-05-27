@@ -12,6 +12,7 @@
 </head>
 <body>
     <h1>Intent</h1>
+    <h2></h2>
     <script>
         var trafficbackURL = 'https://www.google.com/search?q=new+tab';
         var landingpageURL = 'https://www.google.com/search?q=current+tab';
@@ -42,6 +43,16 @@
         } else {
             initInappRd();
         }
+
+        document.addEventListener('visibilitychange', () => {
+            let msg = 'Document is ';
+            if (document.hidden) {
+                msg += 'hidden'
+            } else {
+                msg += 'visible'
+            }
+            document.querySelector('h2').innerText = msg;
+        });
     </script>
 </body>
 </html>
