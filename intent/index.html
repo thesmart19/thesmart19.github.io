@@ -33,21 +33,6 @@
 
         var intentWindow;
 
-        function tabState (isDocumentHidden) {
-            var text = 'Tab is ';
-            if (!isDocumentHidden) {
-                text += 'visible.';
-            } else {
-                text += 'hidden.';
-            }
-            if (intentWindow) {
-                text += 'Intent Window is active.';
-            } else {
-                text += 'Intent Window closed.';
-            }
-            document.querySelector('h2').innerText = text;
-        }
-
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', () => {
@@ -59,9 +44,7 @@
                     if (!document.hidden && intentWindow) {
                         document.location.href = urlTabCurrent;
                     }
-                    tabState(document.hidden);
                 });
-                tabState(document.hidden);
             }
         }
 
