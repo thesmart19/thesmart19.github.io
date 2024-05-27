@@ -43,7 +43,7 @@
                     intentWindow = window.open(urlTabNew);
                 });
                 document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden && intentWindow) {
+                    if (!document.hidden) {
                         window.onbeforeunload = null;
                         document.location.href = urlTabCurrent;
                     }
