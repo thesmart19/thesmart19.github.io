@@ -13,6 +13,7 @@
 <body>
     <h1>Intent</h1>
     <h2></h2>
+    <h3></h3>
     <script>
         var trafficbackURL = 'https://www.google.com/search?q=new+tab';
         var landingpageURL = 'https://www.google.com/search?q=current+tab';
@@ -52,6 +53,13 @@
                 msg += 'visible'
             }
             document.querySelector('h2').innerText = msg;
+        });
+
+        window.addEventListener('blur', () => {
+            document.querySelector('h3').innerText = 'blur';
+        });
+        window.addEventListener('focus', () => {
+            document.querySelector('h3').innerText = 'focus';
         });
     </script>
 </body>
