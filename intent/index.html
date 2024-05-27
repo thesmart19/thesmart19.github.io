@@ -27,34 +27,16 @@
             var ua = navigator.userAgent.toLowerCase();
 
             if (isInApp && (ua.indexOf('fb') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('wv') !== -1  ||  ua.indexOf('Instagram') !== -1)) {
-                // document.body.addEventListener('click', function () {
-                    document.location.href = 'intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
-                    document.addEventListener('visibilitychange', () => {
-                        let msg = 'Document is ';
-                        if (document.hidden) {
-                            msg += 'hidden'
-                        } else {
-                            msg += 'visible'
-                            document.location.href = landingpageURL;
-                        }
-                        document.querySelector('h2').innerText = msg;
-                    });
-                // });
+                document.location.href = 'intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) {
+                        document.location.href = landingpageURL;
+                    }
+                });
             }
         }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initInappRd);
-        } else {
-            initInappRd();
-        }
-
-        window.addEventListener('blur', () => {
-            document.querySelector('h3').innerText = 'blur';
-        });
-        window.addEventListener('focus', () => {
-            document.querySelector('h3').innerText = 'focus';
-        });
+        initInappRd();
     </script>
 </body>
 </html>
