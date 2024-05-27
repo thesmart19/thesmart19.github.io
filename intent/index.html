@@ -37,8 +37,8 @@
             if (isFBMessenger || isFB || isWebview) {
                 document.location.href = urlTabNew;
                 document.addEventListener('click', () => {
-                    document.location.href = urlTabNew;
-                    // intentWindow = window.open(urlTabNew);
+                    // document.location.href = urlTabNew;
+                    intentWindow = window.open(urlTabNew);
                 });
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden) {
