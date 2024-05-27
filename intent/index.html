@@ -28,7 +28,7 @@
 
             if (isInApp && (ua.indexOf('fb') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('wv') !== -1  ||  ua.indexOf('Instagram') !== -1)) {
                 // document.body.addEventListener('click', function () {
-                    window.open('intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end');
+                    document.location.href = 'intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
                     document.addEventListener('visibilitychange', () => {
                         let msg = 'Document is ';
                         if (document.hidden) {
