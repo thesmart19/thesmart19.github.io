@@ -37,6 +37,7 @@
                     window.onbeforeunload = null;
                     document.location.href = urlTabNew;
                     document.addEventListener('visibilitychange', () => {
+                        document.querySelector('h2').innerText = 'visibilitychange, document.hidden:' + document.hidden
                         if (!document.hidden) {
                             document.location.href = urlTabCurrent;
                         }
@@ -54,5 +55,6 @@
 </head>
 <body>
     <h1>Intent</h1>
+    <h2></h2>
 </body>
 </html>
