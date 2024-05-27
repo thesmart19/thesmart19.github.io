@@ -32,13 +32,19 @@
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
         var isIntentOpened = false;
+        var intentWindow;
 
         function tabState (isDocumentHidden) {
             var text = 'Tab is ';
             if (!isDocumentHidden) {
-                text += 'visible';
+                text += 'visible.';
             } else {
-                text += 'hidden';
+                text += 'hidden.';
+            }
+            if (intentWindow) {
+                text += 'Intent Window is active.';
+            } else {
+                text += 'Intent Window closed.';
             }
             document.querySelector('h2').innerText = text;
         }
@@ -46,9 +52,10 @@
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 // document.addEventListener('click', () => {
-                    isIntentOpened = true;
-                    window.onbeforeunload = null;
-                    document.location.href = urlTabNew;
+                isIntentOpened = true;
+                window.onbeforeunload = null;
+                intentWindow = window.open(urlTabNew);
+                // document.location.href = urlTabNew;
                 // });
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden && isIntentOpened) {
