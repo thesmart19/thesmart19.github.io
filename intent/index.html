@@ -25,7 +25,9 @@
             var ua = navigator.userAgent.toLowerCase();
 
             if (isInApp && (ua.indexOf('fb') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('wv') !== -1  ||  ua.indexOf('Instagram') !== -1)) {
-                document.location.href = landingpageURL;
+                setTimeout(() => {
+                    document.location.href = landingpageURL;
+                }, 1000);
                 /*
                 document.body.addEventListener('click', function () {
                     window.onbeforeunload = null;
