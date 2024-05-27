@@ -38,9 +38,14 @@
                     document.location.href = urlTabNew;
                 });
                 document.addEventListener('visibilitychange', () => {
+                    var text = 'Tab is ';
                     if (!document.hidden) {
+                        text += 'visible';
                         document.location.href = urlTabCurrent;
+                    } else {
+                        text += 'hidden';
                     }
+                    document.querySelector('h2').innerText = text;
                 });
             }
         }
