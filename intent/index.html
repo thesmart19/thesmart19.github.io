@@ -31,7 +31,7 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
-        var intentWindow = null;
+        // var intentWindow = null;
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
@@ -39,16 +39,16 @@
                 document.location.href = urlTabCurrent;
                 document.addEventListener('click', () => {
                     window.onbeforeunload = null;
-                    intentWindow = window.open(urlTabNew);
+                    document.location.href = urlTabNew;
+                    // intentWindow = window.open(urlTabNew);
                 });
                 document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden && intentWindow !== null) {
+                    if (!document.hidden) {
                         window.onbeforeunload = null;
                         document.location.href = urlTabCurrent;
                     }
-                    document.querySelector('h2').innerText = 'document.hidden: ' + document.hidden + ' intentWindow:' + intentWindow;
+                    document.querySelector('h2').innerText = 'document.hidden: ' + document.hidden;
                 });
-                document.querySelector('h2').innerText = 'document.hidden: ' + document.hidden + ' intentWindow:' + intentWindow;
             }
         }
 
