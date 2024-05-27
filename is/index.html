@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intent</title>
+    <style>
+        html, body { height: 100%; width: 100%;}
+        body, h1 { margin: 0; }
+    </style>
+</head>
+<body>
+    <h1>IS</h1>
+    <p class="fbmessenger">fbmessenger:</p>
+    <p class="fb">fb:</p>
+    <p class="instagram">instagram:</p>
+    <p class="webview">webview:</p>
+    <script>
+        var regex = {
+            fbmessenger: '\[(FBAN/MessengerForiOS|FB_IAB/MESSENGER);FBAV/(\d+)(?:\.(\d+)(?:\.(\d+)|)|)',
+            fb: '\[FB.*;(FBAV)/(\d+)(?:\.(\d+)|)(?:\.(\d+)|)',
+            instagram: 'Mozilla.*Mobile.*(Instagram).(\d+)\.(\d+)\.(\d+)',
+            webview: 'webview|; wv\\).+(Chrome)/(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',
+        }
+        var ua = navigator.userAgent;
+
+        function is(ua, pattern) {
+            return Boolean(ua.match(new RegExp(pattern, 'ig')))
+        }
+
+        if (is(ua, regex.fbmessenger)) {
+            document.querySelector('.fbmessenger').innerText += 'YES'
+        }
+        if (is(ua, regex.fb)) {
+            document.querySelector('.fb').innerText += 'YES'
+        }
+        if (is(ua, regex.instagram)) {
+            document.querySelector('.instagram').innerText += 'YES'
+        }
+        if (is(ua, regex.webview)) {
+            document.querySelector('.webview').innerText += 'YES'
+        }
+    </script>
+</body>
+</html>
