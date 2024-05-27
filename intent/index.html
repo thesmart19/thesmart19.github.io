@@ -9,30 +9,50 @@
         html, body { height: 100%; width: 100%;}
         body, h1 { margin: 0; }
     </style>
+    <script>
+        var urlTabNew = 'https://www.google.com/search?q=new+tab';
+        var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
+
+        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
+
+        var regex = {
+            fbmessenger: '(FBAN\\/MessengerForiOS|FB_IAB\\/MESSENGER);FBAV\\/(\\d+)(?:.(\\d+)(?:.(\\d+)|)|)',
+            fb: 'FB.*;(FBAV)\\/(\\d+)(?:.(\\d+)|)(?:.(\\d+)|)',
+            instagram: 'Mozilla.*Mobile.*(Instagram).(\\d+).(\\d+).(\\d+)',
+            webview: 'webview|; wv\\).+(Chrome)\\/(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',
+        }
+
+        function is(pattern) {
+            return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
+        }
+
+        var isFBMessenger = is(regex.fbmessenger);
+        var isFB = is(regex.fb) && !isFBMessenger;
+        var isInstagram = is(regex.instagram);
+        var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
+
+        function init () {
+            if (isFBMessenger || isFB || isInstagram || isWebview) {
+                document.addEventListener('click', () => {
+                    window.onbeforeunload = null;
+                    document.location.href = urlTabNew;
+                    document.addEventListener('visibilitychange', () => {
+                        if (!document.hidden) {
+                            document.location.href = urlTabCurrent;
+                        }
+                    });
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
 </head>
 <body>
     <h1>Intent</h1>
-    <script>
-        var ua = navigator.userAgent.toLowerCase();
-        var tabNewURL = 'https://www.google.com/search?q=new+tab';
-        var tabCurrentURL = 'https://www.google.com/search?q=current+tab';
-        var intentURL = 'intent://' + tabNewURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
-
-        function isInApp() {
-            const regex = new RegExp(`(WebView|(iPhone|iPod|iPad)(?!.*Safari/)|Android.*(wv))`, 'ig');
-            return Boolean(this.ua.match(regex));
-        }
-
-        if (isInApp && (ua.indexOf('fb') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('wv') !== -1  ||  ua.indexOf('Instagram') !== -1)) {
-            document.addEventListener('click', () => {
-                document.location.href = intentURL;
-                document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden) {
-                        document.location.href = tabCurrentURL;
-                    }
-                });
-            });
-        }
-    </script>
 </body>
 </html>
