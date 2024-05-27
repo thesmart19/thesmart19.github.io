@@ -35,16 +35,13 @@
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                window.onbeforeunload = null;
-                intentWindow = window.open(urlTabNew);
+                document.location.href = urlTabNew;
                 document.addEventListener('click', () => {
-                    window.onbeforeunload = null;
-                    // document.location.href = urlTabNew;
-                    intentWindow = window.open(urlTabNew);
+                    document.location.href = urlTabNew;
+                    // intentWindow = window.open(urlTabNew);
                 });
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden) {
-                        window.onbeforeunload = null;
                         document.location.href = urlTabCurrent;
                     }
                 });
