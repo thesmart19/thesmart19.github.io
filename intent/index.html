@@ -33,10 +33,8 @@
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                document.addEventListener('click', () => {
-                    window.onbeforeunload = null;
-                    document.location.href = urlTabNew;
-                });
+                window.onbeforeunload = null;
+                document.location.href = urlTabNew;
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden) {
                         document.location.href = urlTabCurrent;
@@ -54,5 +52,6 @@
 </head>
 <body>
     <h1>Intent</h1>
+    <h2></h2>
 </body>
 </html>
