@@ -23,24 +23,26 @@
             instagram: 'Mozilla.*Mobile.*(Instagram).(\\d+).(\\d+).(\\d+)',
             webview: 'webview|; wv\\).+(Chrome)\\/(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',
         }
-        var ua = navigator.userAgent;
 
-        function is(ua, pattern) {
-            console.log(ua)
-            console.log(pattern)
-            return Boolean(ua.match(new RegExp(pattern, 'ig')))
+        function is(pattern) {
+            return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
         }
 
-        if (is(ua, regex.fbmessenger)) {
+        var isFBMessenger = is(regex.fbmessenger);
+        var isFB = is(regex.fb);
+        var isInstagram = is(regex.instagram);
+        var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
+
+        if (isFBMessenger) {
             document.querySelector('.fbmessenger').innerText += 'YES'
         }
-        if (is(ua, regex.fb)) {
+        if (isFB) {
             document.querySelector('.fb').innerText += 'YES'
         }
-        if (is(ua, regex.instagram)) {
+        if (isInstagram) {
             document.querySelector('.instagram').innerText += 'YES'
         }
-        if (is(ua, regex.webview)) {
+        if (isWebview) {
             document.querySelector('.webview').innerText += 'YES'
         }
     </script>
