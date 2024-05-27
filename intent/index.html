@@ -31,7 +31,6 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
-        var isIntentOpened = false;
         var intentWindow;
 
         function tabState (isDocumentHidden) {
@@ -52,13 +51,12 @@
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', () => {
-                    isIntentOpened = true;
                     window.onbeforeunload = null;
                     intentWindow = window.open(urlTabNew);
                     // document.location.href = urlTabNew;
                 });
                 document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden && isIntentOpened) {
+                    if (!document.hidden && intentWindow) {
                         document.location.href = urlTabCurrent;
                     }
                     tabState(document.hidden);
