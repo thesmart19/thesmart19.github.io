@@ -35,14 +35,11 @@
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                /*
                 document.addEventListener('click', () => {
                     window.onbeforeunload = null;
-                    intentWindow = window.open(urlTabNew);
-
+                    document.location.href = urlTabNew;
+                    // intentWindow = window.open(urlTabNew);
                 });
-                */
-                document.location.href = urlTabNew;
                 document.addEventListener('visibilitychange', () => {
                     if (!document.hidden) {
                         document.location.href = urlTabCurrent;
