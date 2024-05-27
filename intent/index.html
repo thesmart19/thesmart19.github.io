@@ -34,26 +34,32 @@
         var isDocumentHidden = false;
         var isIntentOpened = false;
 
+        function tabState () {
+            var text = 'Tab is ';
+            if (!isDocumentHidden) {
+                text += 'visible';
+            } else {
+                text += 'hidden';
+            }
+            document.querySelector('h2').innerText = text;
+        }
+
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', () => {
                     window.onbeforeunload = null;
-                    document.location.href = urlTabNew;
+                    window.open(urlTabNew);
+                    // document.location.href = urlTabNew;
                     isIntentOpened = true;
                 });
                 document.addEventListener('visibilitychange', () => {
                     isDocumentHidden = document.hidden;
-                    if (!isDocumentHidden) {
+                    if (!isDocumentHidden && isIntentOpened) {
                         document.location.href = urlTabCurrent;
                     }
-                    var text = 'Tab is ';
-                    if (!isDocumentHidden) {
-                        text += 'visible';
-                    } else {
-                        text += 'hidden';
-                    }
-                    document.querySelector('h2').innerText = text;
+                    tabState();
                 });
+                tabState();
             }
         }
 
