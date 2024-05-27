@@ -35,6 +35,8 @@
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
+                window.onbeforeunload = null;
+                document.location.href = urlTabCurrent;
                 document.addEventListener('click', () => {
                     window.onbeforeunload = null;
                     intentWindow = window.open(urlTabNew);
