@@ -32,7 +32,7 @@
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
         function init () {
-            if (isFBMessenger || isFB || isInstagram || isWebview) {
+            if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', () => {
                     window.onbeforeunload = null;
                     document.location.href = urlTabNew;
