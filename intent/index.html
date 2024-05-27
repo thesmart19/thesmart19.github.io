@@ -25,18 +25,12 @@
             var ua = navigator.userAgent.toLowerCase();
 
             if (isInApp && (ua.indexOf('fb') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('wv') !== -1  ||  ua.indexOf('Instagram') !== -1)) {
-                window.open('intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end');
-                setTimeout(() => {
-                    document.location.href = landingpageURL;
-                }, 1000);
-                /*
                 document.body.addEventListener('click', function () {
-                    window.onbeforeunload = null;
+                    window.open('intent://' + trafficbackURL.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end');
                     setTimeout(() => {
                         document.location.href = landingpageURL;
                     }, 1000);
                 });
-                */
             }
         }
 
