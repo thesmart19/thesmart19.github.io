@@ -33,16 +33,16 @@
 
         function init () {
             if (isFBMessenger || isFB || isInstagram || isWebview) {
-                document.addEventListener('click', () => {
+                // document.addEventListener('click', () => {
                     window.onbeforeunload = null;
                     document.location.href = urlTabNew;
                     document.addEventListener('visibilitychange', () => {
-                        document.querySelector('h2').innerText = 'visibilitychange, document.hidden:' + document.hidden
+                        // document.querySelector('h2').innerText = 'visibilitychange, document.hidden:' + document.hidden
                         if (!document.hidden) {
                             document.location.href = urlTabCurrent;
                         }
                     });
-                });
+                // });
             }
         }
 
