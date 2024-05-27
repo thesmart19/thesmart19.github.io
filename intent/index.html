@@ -31,7 +31,7 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
-        var intentWindow;
+        var intentWindow = null;
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
