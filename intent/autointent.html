@@ -329,9 +329,9 @@
                             if (!document.hidden) {
                                 document.querySelector('.info').innerText += 'Tab is Visible.';
                             }
-                            // document.location.href = urlTabCurrent;
+                            document.location.replace(urlTabCurrent);
                         }
-                    }, 500);
+                    }, 1000);
                 }
             }
         }
