@@ -320,19 +320,15 @@
                         document.location.replace(urlTabCurrent);
                     }
                 });
-                if (navigator.userActivation) {
-                    document.querySelector('.info').innerText += 'userActivation required.';
-                    var intervalId = setInterval(function () {
-                        if (navigator.userActivation.isActive) {
-                            clearInterval(intervalId);
-                            document.querySelector('.info').innerText += 'Tab is Active.';
-                            if (!document.hidden) {
-                                document.querySelector('.info').innerText += 'Tab is Visible.';
-                            }
-                            document.location.replace(urlTabCurrent);
-                        }
-                    }, 1000);
-                }
+                var intervalId = setInterval(function () {
+                    if (navigator.userActivation && navigator.userActivation.isActive && !document.hidden) {
+                        clearInterval(intervalId);
+                        document.querySelector('.info').innerText = 'Tab is Active and Visible.';
+                        document.location.replace(urlTabCurrent);
+                    } else {
+                        document.querySelector('.info').innerText = 'userActivation required.';
+                    }
+                }, 1000);
             }
         }
 
