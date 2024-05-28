@@ -31,21 +31,23 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
-        function openIntent () {
-            document.removeEventListener('click', openIntent);
+        function current () {
+            if (!document.hidden) {
+                document.location.href = urlTabCurrent;
+            }
+        }
+
+        function intent () {
+            document.removeEventListener('click', intent);
             window.onbeforeunload = null;
-            var w = window.open(urlTabNew, '_system');
-            document.addEventListener('visibilitychange', function () {
-                if (!document.hidden && w) {
-                    document.location.href = urlTabCurrent;
-                    document.querySelector('h2').innerText = 'Tab is visible';
-                }
-            });
+            document.location.href = urlTabNew;
+            current();
         }
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                document.addEventListener('click', openIntent);
+                document.addEventListener('click', intent);
+                document.addEventListener('visibilitychange', current);
             }
         }
 
