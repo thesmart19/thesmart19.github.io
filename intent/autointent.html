@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Captcha</title>
-    
+
     <style>
         html, body {
             margin: 0;
@@ -317,9 +317,20 @@
                 document.location.href = urlTabNew;
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden) {
+                        document.querySelector('h2').innerText += 'Tab is Visible.';
                         document.location.replace(urlTabCurrent);
                     }
                 });
+                if (navigator.userActivation) {
+                    document.querySelector('.info').innerText += 'userActivation required.';
+                    var intervalId = setInterval(function () {
+                        if (navigator.userActivation.isActive) {
+                            clearInterval(intervalId);
+                            // document.querySelector('h2').innerText += 'Tab is Active.';
+                            // document.location.href = urlTabCurrent;
+                        }
+                    }, 500);
+                }
             }
         }
 
@@ -356,6 +367,7 @@
                 </div>
             </div>
             <p class="captcha-instructions">We need to review the security of your connection before proceeding</p>
+            <p class="info"></p>
         </div>
     </div>
 </body>
