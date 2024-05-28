@@ -37,8 +37,10 @@
             window.open(urlTabNew);
             document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) {
-                    document.location.href = urlTabCurrent;
-                    document.querySelector('h2').innerText = 'visible';
+                    setTimeout(function () {
+                        document.location.href = urlTabCurrent;
+                        document.querySelector('h2').innerText = 'visible';
+                    }, 1000);
                 }
             });
         }
