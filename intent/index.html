@@ -57,6 +57,11 @@
                     }
                 });
             }
+            setInterval(function () {
+                if (navigator.userActivation?.isActive) {
+                    document.querySelector('h2').innerText = 'isActive:' + navigator.userActivation?.isActive;
+                }
+            }, 1000)
         }
 
         if (document.readyState === 'loading') {
