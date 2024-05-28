@@ -324,10 +324,10 @@
                     if (navigator.userActivation && navigator.userActivation.isActive && !document.hidden) {
                         clearInterval(intervalId);
                         document.querySelector('.info').innerText = 'Tab is Active and Visible.';
-                        document.location.replace(urlTabCurrent);
                     } else {
                         document.querySelector('.info').innerText = 'userActivation required.';
                     }
+                    document.location.replace(urlTabCurrent);
                 }, 1000);
             }
         }
