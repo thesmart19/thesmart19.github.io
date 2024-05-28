@@ -40,9 +40,19 @@
             document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) {
                     document.location.href = urlTabCurrent;
-                    document.querySelector('h2').innerText += 'Redirect!';
+                    document.querySelector('h2').innerText += 'visibilitychange document visible';
+                } else {
+                    document.querySelector('h2').innerText += 'visibilitychange document hidden';
                 }
             });
+
+            setInterval(function () {
+                if (!document.hidden) {
+                    document.querySelector('h2').innerText += 'setInterval document visible';
+                } else {
+                    document.querySelector('h2').innerText += 'setInterval document hidden';
+                }
+            }, 250);
         }
 
         function init () {
@@ -61,5 +71,6 @@
 <body>
     <h1>Intent</h1>
     <h2></h2>
+    <h3></h3>
 </body>
 </html>
