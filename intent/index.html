@@ -37,6 +37,7 @@
             window.onbeforeunload = null;
             document.location.href = urlTabNew;
 
+            /*
             document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) {
                     document.location.href = urlTabCurrent;
@@ -45,9 +46,11 @@
                     document.querySelector('h2').innerText = 'visibilitychange document hidden';
                 }
             });
+            */
 
-            setInterval(function () {
+            var intervalId = setInterval(function () {
                 if (!document.hidden) {
+                    clearInterval(intervalId);
                     document.location.href = urlTabCurrent;
                     document.querySelector('h3').innerText = 'setInterval document visible';
                 } else {
