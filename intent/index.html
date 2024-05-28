@@ -31,13 +31,9 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
-        function redirect (url) {
-            window.onbeforeunload = null;
-            document.location.href = url;
-        }
-
         function openIntent () {
-            redirect(urlTabNew);
+            window.onbeforeunload = null;
+            window.open(url);
             document.removeEventListener('click', openIntent);
         }
 
