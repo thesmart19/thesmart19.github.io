@@ -47,7 +47,7 @@
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden) {
                         document.querySelector('h2').innerText = 'visible';
-                        redirect(urlTabCurrent);
+                        document.location.replace(urlTabCurrent);
                     }
                 });
             }
