@@ -32,20 +32,20 @@
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
         function openIntent () {
+            document.removeEventListener('click', openIntent);
             window.onbeforeunload = null;
             window.open(urlTabNew);
-            document.removeEventListener('click', openIntent);
+            document.addEventListener('visibilitychange', function () {
+                if (!document.hidden) {
+                    document.location.href = urlTabCurrent;
+                    document.querySelector('h2').innerText = 'visible';
+                }
+            });
         }
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', openIntent);
-                document.addEventListener('visibilitychange', function () {
-                    if (!document.hidden) {
-                        document.location.href = urlTabCurrent;
-                        document.querySelector('h2').innerText = 'visible';
-                    }
-                });
             }
         }
 
