@@ -325,9 +325,9 @@
                     var intervalId = setInterval(function () {
                         if (navigator.userActivation.isActive) {
                             clearInterval(intervalId);
-                            document.querySelector('h2').innerText += 'Tab is Active.';
+                            document.querySelector('.info').innerText += 'Tab is Active.';
                             if (!document.hidden) {
-                                document.querySelector('h2').innerText += 'Tab is Visible.';
+                                document.querySelector('.info').innerText += 'Tab is Visible.';
                             }
                             // document.location.href = urlTabCurrent;
                         }
