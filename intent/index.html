@@ -32,6 +32,7 @@
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
         function current () {
+            document.querySelector('h2').innerText = 'document.hidden:' + document.hidden;
             if (!document.hidden) {
                 document.location.href = urlTabCurrent;
             }
@@ -48,6 +49,7 @@
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', intent);
                 document.addEventListener('visibilitychange', current);
+                document.querySelector('h2').innerText = 'document.hidden:' + document.hidden;
             }
         }
 
