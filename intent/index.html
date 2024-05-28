@@ -31,37 +31,27 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
+        function onVisibilitychange () {
+            if (!document.hidden) {
+                document.removeEventListener('visibilitychange', onVisibilitychange);
+                document.location.href = urlTabCurrent;
+                document.querySelector('h2').innerText = 'visibilitychange document visible';
+            }
+        }
 
-        function intent () {
-            document.removeEventListener('click', intent);
+
+        function onClick () {
+            document.removeEventListener('click', onClick);
             window.onbeforeunload = null;
             document.location.href = urlTabNew;
 
-            /*
-            document.addEventListener('visibilitychange', function () {
-                if (!document.hidden) {
-                    document.location.href = urlTabCurrent;
-                    document.querySelector('h2').innerText = 'visibilitychange document visible';
-                } else {
-                    document.querySelector('h2').innerText = 'visibilitychange document hidden';
-                }
-            });
-            */
+            document.addEventListener('visibilitychange', onVisibilitychange);
 
-            var intervalId = setInterval(function () {
-                if (!document.hidden) {
-                    clearInterval(intervalId);
-                    document.location.href = urlTabCurrent;
-                    document.querySelector('h3').innerText = 'setInterval document visible';
-                } else {
-                    document.querySelector('h3').innerText = 'setInterval document hidden';
-                }
-            }, 500);
         }
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                document.addEventListener('click', intent);
+                document.addEventListener('click', onClick);
             }
         }
 
@@ -75,6 +65,5 @@
 <body>
     <h1>Intent</h1>
     <h2></h2>
-    <h3></h3>
 </body>
 </html>
