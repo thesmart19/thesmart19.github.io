@@ -38,10 +38,15 @@
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
-                redirect(urlTabNew);
+                document.addEventListener('click', function () {
+                    redirect(urlTabNew);
+                });
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden) {
                         redirect(urlTabCurrent);
+                        document.addEventListener('click', function () {
+                            redirect(urlTabCurrent);
+                        });
                     }
                 });
             }
