@@ -47,6 +47,7 @@
                     document.querySelector('h2').innerText += 'windowIntent:' + typeof windowIntent;
                     if (!document.hidden && windowIntent) {
                         document.location.href = urlTabCurrent;
+                        ocument.querySelector('h2').innerText += 'Redirect!';
                     }
                 });
             }
