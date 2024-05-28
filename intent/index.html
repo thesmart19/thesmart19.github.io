@@ -31,31 +31,23 @@
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
 
-        var windowIntent;
 
         function intent () {
             document.removeEventListener('click', intent);
             window.onbeforeunload = null;
-            windowIntent = window.open(urlTabNew, '_system');
-        }
+            document.location.href = urlTabNew;
 
-        function metaRefreshRedirect () {
-            var meta = document.createElement('meta');
-            meta.httpEquiv = 'refresh';
-            meta.content = '0; url=' + urlTabCurrent;
-            document.head.appendChild(meta);
+            document.addEventListener('visibilitychange', function () {
+                if (!document.hidden) {
+                    document.location.href = urlTabCurrent;
+                    document.querySelector('h2').innerText += 'Redirect!';
+                }
+            });
         }
 
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', intent);
-                document.addEventListener('visibilitychange', function () {
-                    if (!document.hidden && typeof windowIntent === 'object') {
-                        // document.location.replace(urlTabCurrent);
-                        metaRefreshRedirect();
-                        document.querySelector('h2').innerText += 'Meta Redirect!';
-                    }
-                });
             }
         }
 
