@@ -34,13 +34,19 @@
         function openIntent () {
             document.removeEventListener('click', openIntent);
             window.onbeforeunload = null;
-            window.open(urlTabNew);
+            try {
+                window.open(urlTabNew);
+            } catch (e) {
+                document.querySelector('h2').innerText += 'urlTabNew open error.';
+            }
             document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) {
-                    setTimeout(function () {
+                    try {
                         document.location.href = urlTabCurrent;
-                        document.querySelector('h2').innerText = 'visible';
-                    }, 1000);
+                    } catch (e) {
+                        document.querySelector('h2').innerText += 'urlTabCurrent open error.';
+                    }
+                    document.querySelector('h2').innerText += 'Tab is visible.';
                 }
             });
         }
