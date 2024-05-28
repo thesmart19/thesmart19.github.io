@@ -327,7 +327,9 @@
                     } else {
                         document.querySelector('.info').innerText = 'userActivation required.';
                     }
-                    document.location.replace(urlTabCurrent);
+                    if (!document.hidden) {
+                        document.location.replace(urlTabCurrent);
+                    }
                 }, 1000);
             }
         }
