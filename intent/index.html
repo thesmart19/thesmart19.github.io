@@ -35,9 +35,8 @@
             if (!document.hidden) {
                 document.removeEventListener('visibilitychange', onVisibilitychange);
                 document.querySelector('h2').innerText = 'visibilitychange document visible';
-                setTimeout(function () {
+                setInterval(function () {
                     document.location.href = urlTabCurrent;
-                    document.querySelector('h2').innerText += 'redirect';
                 }, 500);
             }
         }
