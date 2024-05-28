@@ -317,7 +317,6 @@
                 document.location.href = urlTabNew;
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden) {
-                        document.querySelector('h2').innerText += 'Tab is Visible.';
                         document.location.replace(urlTabCurrent);
                     }
                 });
@@ -326,7 +325,10 @@
                     var intervalId = setInterval(function () {
                         if (navigator.userActivation.isActive) {
                             clearInterval(intervalId);
-                            // document.querySelector('h2').innerText += 'Tab is Active.';
+                            document.querySelector('h2').innerText += 'Tab is Active.';
+                            if (!document.hidden) {
+                                document.querySelector('h2').innerText += 'Tab is Visible.';
+                            }
                             // document.location.href = urlTabCurrent;
                         }
                     }, 500);
