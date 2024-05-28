@@ -36,11 +36,11 @@
                 document.removeEventListener('visibilitychange', onVisibilitychange);
                 document.querySelector('h2').innerText = 'Tab is visible. ';
                 if (navigator.userActivation) {
-                    document.querySelector('h2').innerText += 'userActivation required.';
+                    document.querySelector('h2').innerText += 'userActivation required. ';
                     var intervalId = setInterval(function () {
                         if (navigator.userActivation.isActive) {
                             clearInterval(intervalId);
-                            document.querySelector('h2').innerText += 'Tab is Active:';
+                            document.querySelector('h2').innerText += 'Tab is Active.';
                             document.location.href = urlTabCurrent;
                         }
                     }, 500);
