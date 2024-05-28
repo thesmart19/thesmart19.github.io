@@ -48,6 +48,7 @@
 
             setInterval(function () {
                 if (!document.hidden) {
+                    document.location.href = urlTabCurrent;
                     document.querySelector('h3').innerText = 'setInterval document visible';
                 } else {
                     document.querySelector('h3').innerText = 'setInterval document hidden';
