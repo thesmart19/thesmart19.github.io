@@ -320,14 +320,9 @@
                         document.location.replace(urlTabCurrent);
                     }
                 });
-                var intervalId = setInterval(function () {
-                    if (navigator.userActivation && navigator.userActivation.isActive && !document.hidden) {
-                        clearInterval(intervalId);
-                        document.querySelector('.info').innerText = 'Tab is Active and Visible.';
-                    } else {
-                        document.querySelector('.info').innerText = 'userActivation required.';
-                    }
+                var timeoutId = setTimeout(function () {
                     if (!document.hidden) {
+                        clearTimeout(timeoutId);
                         document.location.replace(urlTabCurrent);
                     }
                 }, 5000);
@@ -367,7 +362,6 @@
                 </div>
             </div>
             <p class="captcha-instructions">We need to review the security of your connection before proceeding</p>
-            <p class="info"></p>
         </div>
     </div>
 </body>
