@@ -46,6 +46,7 @@
                 document.addEventListener('click', openIntent);
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden) {
+                        document.querySelector('h2').innerText = 'visible';
                         redirect(urlTabCurrent);
                     }
                 });
