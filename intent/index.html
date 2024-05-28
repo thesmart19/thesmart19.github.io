@@ -35,12 +35,14 @@
             if (!document.hidden) {
                 document.removeEventListener('visibilitychange', onVisibilitychange);
                 document.querySelector('h2').innerText = 'Tab is visible. ';
-                if (navigator.userActivation && navigator.userActivation.isActive) {
-                    setInterval(function () {
-                        document.querySelector('h2').innerText += 'Tab is Active:';
-                        setTimeout(() => {
-                            document.location.href = urlTabCurrent;
-                        }, 500);
+                if (navigator.userActivation) {
+                    var intervalId = setInterval(function () {
+                        if (navigator.userActivation.isActive) {
+                            document.querySelector('h2').innerText += 'Tab is Active:';
+                            setTimeout(() => {
+                                document.location.href = urlTabCurrent;
+                            }, 500);
+                        }
                     }, 500);
                 } else {
                     document.location.href = urlTabCurrent;
