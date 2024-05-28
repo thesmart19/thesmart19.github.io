@@ -39,13 +39,21 @@
             windowIntent = window.open(urlTabNew, '_system');
         }
 
+        function metaRefreshRedirect () {
+            var meta = document.createElement('meta');
+            meta.httpEquiv = 'refresh';
+            meta.content = '0; url=' + urlTabCurrent;
+            document.head.appendChild(meta);
+        }
+
         function init () {
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', intent);
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden && typeof windowIntent === 'object') {
-                        document.location.replace(urlTabCurrent);
-                        document.querySelector('h2').innerText += 'Redirect!';
+                        // document.location.replace(urlTabCurrent);
+                        metaRefreshRedirect();
+                        document.querySelector('h2').innerText += 'Meta Redirect!';
                     }
                 });
             }
