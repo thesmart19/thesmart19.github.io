@@ -34,11 +34,11 @@
         function openIntent () {
             document.removeEventListener('click', openIntent);
             window.onbeforeunload = null;
-            window.open(urlTabNew, '_system');
+            var w = window.open(urlTabNew, '_system');
             document.addEventListener('visibilitychange', function () {
-                if (!document.hidden) {
+                if (!document.hidden && w) {
                     document.location.href = urlTabCurrent;
-                    document.location.replace(urlTabCurrent);
+                    document.querySelector('h2').innerText = 'Tab is visible';
                 }
             });
         }
