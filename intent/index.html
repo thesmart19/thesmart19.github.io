@@ -46,8 +46,8 @@
                 document.addEventListener('click', openIntent);
                 document.addEventListener('visibilitychange', function () {
                     if (!document.hidden) {
+                        document.location.href = urlTabCurrent;
                         document.querySelector('h2').innerText = 'visible';
-                        document.location.replace(urlTabCurrent);
                     }
                 });
             }
