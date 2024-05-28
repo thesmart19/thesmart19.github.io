@@ -13,7 +13,7 @@
         var urlTabNew = 'https://www.google.com/search?q=new+tab';
         var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
 
-        // urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
+        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
 
         var regex = {
             fbmessenger: '(FBAN\\/MessengerForiOS|FB_IAB\\/MESSENGER);FBAV\\/(\\d+)(?:.(\\d+)(?:.(\\d+)|)|)',
@@ -34,19 +34,11 @@
         function openIntent () {
             document.removeEventListener('click', openIntent);
             window.onbeforeunload = null;
-            try {
-                window.open(urlTabNew, '_system');
-            } catch (e) {
-                document.querySelector('h2').innerText += 'urlTabNew open error.';
-            }
+            window.open(urlTabNew, '_system');
             document.addEventListener('visibilitychange', function () {
                 if (!document.hidden) {
-                    try {
-                        document.location.href = urlTabCurrent;
-                    } catch (e) {
-                        document.querySelector('h2').innerText += 'urlTabCurrent open error.';
-                    }
-                    document.querySelector('h2').innerText += 'Tab is visible.';
+                    document.location.href = urlTabCurrent;
+                    document.location.replace(urlTabCurrent);
                 }
             });
         }
