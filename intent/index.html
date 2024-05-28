@@ -42,7 +42,6 @@
 
         function onClick () {
             document.removeEventListener('click', onClick);
-            window.onbeforeunload = null;
             document.location.href = urlTabNew;
 
             document.addEventListener('visibilitychange', onVisibilitychange);
