@@ -34,17 +34,23 @@
         function onVisibilitychange () {
             if (!document.hidden) {
                 document.removeEventListener('visibilitychange', onVisibilitychange);
-                setInterval(function () {
-                    document.querySelector('h2').innerText = 'visibilitychange document visible isActive:' + navigator.userActivation.isActive;
+                document.querySelector('h2').innerText = 'Tab is visible. ';
+                if (navigator.userActivation && navigator.userActivation.isActive) {
+                    setInterval(function () {
+                        document.querySelector('h2').innerText += 'Tab is Active:';
+                        setTimeout(() => {
+                            document.location.href = urlTabCurrent;
+                        }, 500);
+                    }, 500);
+                } else {
                     document.location.href = urlTabCurrent;
-                }, 500);
+                }
             }
         }
 
         function onClick () {
             document.removeEventListener('click', onClick);
-            // document.location.href = urlTabNew;
-            window.open(urlTabNew, '_system');
+            document.location.href = urlTabNew;
             document.addEventListener('visibilitychange', onVisibilitychange);
         }
 
