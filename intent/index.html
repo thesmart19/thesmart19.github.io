@@ -34,8 +34,8 @@
         function onVisibilitychange () {
             if (!document.hidden) {
                 document.removeEventListener('visibilitychange', onVisibilitychange);
-                document.querySelector('h2').innerText = 'visibilitychange document visible isActive:' + navigator.userActivation.isActive;
                 setInterval(function () {
+                    document.querySelector('h2').innerText = 'visibilitychange document visible isActive:' + navigator.userActivation.isActive;
                     document.location.href = urlTabCurrent;
                 }, 500);
             }
