@@ -43,11 +43,9 @@
             if (isFBMessenger || isFB || isWebview) {
                 document.addEventListener('click', intent);
                 document.addEventListener('visibilitychange', function () {
-                    document.querySelector('h2').innerText += ' document.hidden:' + document.hidden;
-                    document.querySelector('h2').innerText += ' windowIntent:' + typeof windowIntent;
                     if (!document.hidden && typeof windowIntent === 'object') {
-                        document.location.href = urlTabCurrent;
-                        document.querySelector('h2').innerText += ' Redirect!';
+                        document.location.replace(urlTabCurrent);
+                        document.querySelector('h2').innerText += 'Redirect!';
                     }
                 });
             }
