@@ -7,42 +7,66 @@
 </head>
 <body>
     <h1>Browser Debug Page</h1>
-    <table border="1" cellpadding="0" cellspacing="0">
+    <table border="1" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td width="50%">document.currentScript.spellcheck</td>
-            <td width="50%" id="docCurrentScriptSpellcheck"></td>
+            <td>
+                <b>document.currentScript.spellcheck</b>
+                <span id="docCurrentScriptSpellcheck"></span>
+            </td>
         </tr>
         <tr>
-            <td width="50%">document.policy || document.featurePolicy</td>
-            <td width="50%" id="docp"></td>
+            <td>
+                <b>document.policy || document.featurePolicy</b>
+                <div id="docPolicy"></div>
+            </td>
         </tr>
         <tr>
-            <td width="50%">FB_IAB</td>
-            <td width="50%" id="fbiab"></td>
+            <td>
+                <b>document.onvisibilitychange</b>
+                <span id="docOnvisibilitychange"></span>
+            </td>
         </tr>
         <tr>
-            <td width="50%">navigator.userAgent</td>
-            <td width="50%" id="userAgent"></td>
+            <td>
+                <b>FB_IAB</b>
+                <span id="fbiab"></span>
+            </td>
         </tr>
         <tr>
-            <td width="50%">navigator.userActivation</td>
-            <td width="50%" id="userActivation"></td>
+            <td>
+                <b>navigator.userAgent</b>
+                <div id="userAgent"></div>
+            </td>
         </tr>
         <tr>
-            <td width="50%">navigator.userActivation.isActive</td>
-            <td width="50%" id="userActivationIsActive"></td>
+            <td>
+                <b>navigator.userActivation</b>
+                <span id="userActivation"></span>
+            </td>
         </tr>
         <tr>
-            <td width="50%">window.FbQuoteShareJSInterface</td>
-            <td width="50%" id="winFbQuoteShareJSInterface"></td>
+            <td>
+                <b>navigator.userActivation.isActive</b>
+                <span id="userActivationIsActive"></span>
+            </td>
         </tr>
         <tr>
-            <td width="50%">window.TEMPORARY</td>
-            <td width="50%" id="wint"></td>
+            <td>
+                <b>navigator.FbQuoteShareJSInterface</b>
+                <span id="winFbQuoteShareJSInterface"></span>
+            </td>
         </tr>
         <tr>
-            <td width="50%">window.PERSISTENT</td>
-            <td width="50%" id="winp"></td>
+            <td>
+                <b>window.TEMPORARY</b>
+                <span id="wint"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>window.PERSISTENT</b>
+                <span id="winp"></span>
+            </td>
         </tr>
     </table>
     <script>
@@ -95,9 +119,9 @@
         try {
             policies = JSON.stringify(policies);
         } catch (e) {}
-        set('#docp', policies);
+        set('#docPolicy', policies);
         set('#fbiab', typeof FB_IAB);
-        
+        set('#docOnvisibilitychange', typeof document.onvisibilitychange);
     </script>
     <script src="script.js"></script>
 </body>
