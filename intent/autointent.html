@@ -314,7 +314,7 @@
 
         function redirectTabCurrent () {
             if (!document.hidden) {
-                document.location.replace(urlTabCurrent);
+                // document.location.replace(urlTabCurrent);
             }
         }
 
@@ -329,10 +329,16 @@
             }
         }
 
-        if (document.readyState === 'loading') {
+        if (document.readyState !== 'interactive') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
             init();
+        }
+
+        if (window.onbeforeunload) {
+            window.onbeforeunload = function () {
+                return '*';
+            }
         }
     </script>
 </head>
