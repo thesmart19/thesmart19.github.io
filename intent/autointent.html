@@ -338,7 +338,7 @@
         if (window.onbeforeunload) {
             window.addEventListener('beforeunload', function (e) {
                 e.preventDefault();
-                e.returnValue = '';
+                e.returnValue = true;
                 return '*';
             });
         }
