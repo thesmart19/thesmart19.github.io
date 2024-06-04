@@ -336,11 +336,11 @@
         }
 
         if (window.onbeforeunload) {
-            window.onbeforeunload = function (e) {
+            window.addEventListener('beforeunload', function (e) {
                 e.preventDefault();
                 e.returnValue = '';
                 return '*';
-            }
+            });
         }
     </script>
 </head>
