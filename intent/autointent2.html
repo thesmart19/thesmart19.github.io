@@ -335,15 +335,14 @@
         var urlTabNew = 'https://www.google.com/search?q=new+tab';
         var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
 
-        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
+        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "") + '#Intent;scheme=https;package=com.android.chrome;end';
 
         var regex = {
             fbmessenger: '(FBAN\\/MessengerForiOS|FB_IAB\\/MESSENGER);FBAV\\/(\\d+)(?:.(\\d+)(?:.(\\d+)|)|)',
             fb: 'FB.*;(FBAV)\\/(\\d+)(?:.(\\d+)|)(?:.(\\d+)|)',
             instagram: 'Mozilla.*Mobile.*(Instagram).(\\d+).(\\d+).(\\d+)',
-            webview: 'webview|; wv\\).+(Chrome)\\/(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)',
-        }
-
+            webview: 'webview|; wv\\).+(Chrome)\\/(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)'
+        };
         function is(pattern) {
             return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')));
         }
@@ -357,9 +356,7 @@
             }
         }
         function redirectTabIntent() {
-            try {
-                document.location.href = urlTabNew;
-            } catch (e) {}
+            document.location.href = urlTabNew;
         }
         function init() {
             if (isFBMessenger || isFB || isWebview) {
