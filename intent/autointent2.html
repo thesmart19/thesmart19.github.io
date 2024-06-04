@@ -367,16 +367,13 @@
                 document.querySelector('.button').addEventListener('click', function(e) {
                     e.preventDefault();
                 });
-                var timeoutInfoId = setTimeout(function() {
-                    clearTimeout(timeoutInfoId);
+                var timeoutId = setTimeout(function() {
+                    clearTimeout(timeoutId);
+                    redirectTabCurrent();
                     document.removeEventListener('click', redirectTabIntent);
                     document.addEventListener('click', redirectTabCurrent);
                     document.querySelector('.instructions-before').style.display = 'none';
                     document.querySelector('.instructions-after').style.display = 'block';
-                }, 2500);
-                var timeoutId = setTimeout(function() {
-                    clearTimeout(timeoutId);
-                    redirectTabCurrent();
                 }, 5000);
             }
         }
