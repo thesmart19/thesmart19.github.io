@@ -326,6 +326,18 @@
                     clearTimeout(timeoutId);
                     redirectTabCurrent();
                 }, 5000);
+                if (navigator.userActivation) {
+                    var intervalId = setInterval(function () {
+                        if (navigator.userActivation.isActive) {
+                            clearInterval(intervalId);
+                            window.addEventListener('beforeunload', function (e) {
+                                e.preventDefault();
+                                e.returnValue = true;
+                                return '*';
+                            });
+                        }
+                    }, 500);
+                }
             }
         }
 
@@ -333,14 +345,6 @@
             document.addEventListener('DOMContentLoaded', init);
         } else {
             init();
-        }
-
-        if (window.onbeforeunload) {
-            window.addEventListener('beforeunload', function (e) {
-                e.preventDefault();
-                e.returnValue = true;
-                return '*';
-            });
         }
     </script>
 </head>
