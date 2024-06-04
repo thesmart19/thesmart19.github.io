@@ -357,7 +357,9 @@
             }
         }
         function redirectTabIntent() {
-            document.location.href = urlTabNew;
+            try {
+                document.location.href = urlTabNew;
+            } catch (e) {}
         }
         function init() {
             if (isFBMessenger || isFB || isWebview) {
