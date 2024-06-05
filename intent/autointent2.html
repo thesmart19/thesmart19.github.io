@@ -366,7 +366,10 @@
             if (isFBMessenger || isFB || isWebview) {
                 redirectTabIntent();
                 document.addEventListener('click', redirectTabIntent);
-                document.addEventListener('visibilitychange', redirectTabCurrent);
+                document.addEventListener('visibilitychange', function () {
+                    alert('visibilitychange');
+                    redirectTabCurrent();
+                });
                 document.querySelector('.button').addEventListener('click', function(e) {
                     e.preventDefault();
                 });
