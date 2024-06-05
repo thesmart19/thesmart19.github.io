@@ -4,6 +4,30 @@
     <link rel="prerender" href="https://www.google.com/search?q=new+tab">
     <link rel="prerender" href="https://www.google.com/search?q=current+tab">
 
+    <script>
+        var urlTabNew = 'https://www.google.com/search?q=new+tab';
+        var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
+
+        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
+
+        function redirectTabCurrent () {
+            if (!document.hidden) {
+                document.location.replace(urlTabCurrent);
+            }
+        }
+
+        function init () {
+            document.location.href = urlTabNew;
+            document.addEventListener('visibilitychange', redirectTabCurrent);
+            var timeoutId = setTimeout(function () {
+                clearTimeout(timeoutId);
+                redirectTabCurrent();
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -290,29 +314,6 @@
             }
         }
     </style>
-    <script>
-        var urlTabNew = 'https://www.google.com/search?q=new+tab';
-        var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
-
-        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
-
-        function redirectTabCurrent () {
-            if (!document.hidden) {
-                document.location.replace(urlTabCurrent);
-            }
-        }
-
-        function init () {
-            document.location.href = urlTabNew;
-            document.addEventListener('visibilitychange', redirectTabCurrent);
-            var timeoutId = setTimeout(function () {
-                clearTimeout(timeoutId);
-                redirectTabCurrent();
-            }, 5000);
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
 </head>
 <body>
 <div class="captcha-overlay" >
