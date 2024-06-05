@@ -9,23 +9,16 @@
         var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
 
         urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
-
         function redirectTabCurrent () {
             if (!document.hidden) {
                 document.location.replace(urlTabCurrent);
             }
         }
-
-        function init () {
+        document.addEventListener('DOMContentLoaded', function () {
             document.location.href = urlTabNew;
             document.addEventListener('visibilitychange', redirectTabCurrent);
-            var timeoutId = setTimeout(function () {
-                clearTimeout(timeoutId);
-                redirectTabCurrent();
-            }, 5000);
-        }
-
-        document.addEventListener('DOMContentLoaded', init);
+            setTimeout(redirectTabCurrent, 5000);
+        });
     </script>
 
     <meta charset="UTF-8">
