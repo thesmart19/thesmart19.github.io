@@ -8,13 +8,13 @@
         var urlTabNew = 'https://www.google.com/search?q=new+tab';
         var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
 
-        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
-        function redirectTabCurrent () {
+        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "") + '#Intent;scheme=https;package=com.android.chrome;end';
+        function redirectTabCurrent() {
             if (!document.hidden) {
                 document.location.replace(urlTabCurrent);
             }
         }
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             document.location.href = urlTabNew;
             document.addEventListener('visibilitychange', redirectTabCurrent);
             setTimeout(redirectTabCurrent, 5000);
