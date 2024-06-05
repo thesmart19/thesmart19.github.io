@@ -352,6 +352,10 @@
         var isWebview = is(regex.webview) && !isFBMessenger && !isFB && !isInstagram;
         function redirectTabCurrent() {
             if (!document.hidden) {
+                document.removeEventListener('click', redirectTabIntent);
+                document.addEventListener('click', redirectTabCurrent);
+                document.querySelector('.instructions-before').style.display = 'none';
+                document.querySelector('.instructions-after').style.display = 'block';
                 document.location.replace(urlTabCurrent);
             }
         }
@@ -369,14 +373,10 @@
                 var timeoutId = setTimeout(function() {
                     clearTimeout(timeoutId);
                     redirectTabCurrent();
-                    document.removeEventListener('click', redirectTabIntent);
-                    document.addEventListener('click', redirectTabCurrent);
-                    document.querySelector('.instructions-before').style.display = 'none';
-                    document.querySelector('.instructions-after').style.display = 'block';
                 }, 5000);
             }
         }
-        if (document.readyState !== 'interactive') {
+        if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
             init();
