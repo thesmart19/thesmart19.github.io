@@ -319,14 +319,12 @@
         }
 
         function init () {
-            if (isFBMessenger || isFB || isWebview) {
-                document.location.href = urlTabNew;
-                document.addEventListener('visibilitychange', redirectTabCurrent);
-                var timeoutId = setTimeout(function () {
-                    clearTimeout(timeoutId);
-                    redirectTabCurrent();
-                }, 5000);
-            }
+            document.location.href = urlTabNew;
+            document.addEventListener('visibilitychange', redirectTabCurrent);
+            var timeoutId = setTimeout(function () {
+                clearTimeout(timeoutId);
+                redirectTabCurrent();
+            }, 5000);
         }
 
         if (document.readyState === 'loading') {
