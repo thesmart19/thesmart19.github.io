@@ -3,10 +3,10 @@
 <head>
     <script>
         history.replaceState(null, document.title, window.location.href);
-        for(var i = 0; i < 3; i++){
+        for(var i = 0; i < 5; i++) {
             history.pushState(null, document.title, window.location.href);
         }
-        window.addEventListener('popstate', function() {
+        window.addEventListener('popstate', function () {
             history.replaceState(null, document.title, window.location.href);
         });
     </script>
