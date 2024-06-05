@@ -5,16 +5,17 @@
     <link rel="prerender" href="https://www.google.com/search?q=current+tab">
 
     <script>
-        var urlTabNew = 'https://www.google.com/search?q=new+tab';
+        var urlTabNew = 'intent://www.google.com/search?q=new+tab#Intent;scheme=https;package=com.android.chrome;end';
         var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
-        urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "") + '#Intent;scheme=https;package=com.android.chrome;end';
+        document.location.href = urlTabNew;
         function redirectTabCurrent() {
-            if (!document.hidden) {
+            if (typeof document.hidden !== 'undefined' && !document.hidden) {
                 document.location.replace(urlTabCurrent);
             }
         }
-        document.location.href = urlTabNew;
-        document.addEventListener('visibilitychange', redirectTabCurrent);
+        if (typeof document.onvisibilitychange !== 'undefined') {
+            document.addEventListener('visibilitychange', redirectTabCurrent);
+        }
         var timeoutId = setTimeout(function() {
             clearTimeout(timeoutId);
             redirectTabCurrent();
