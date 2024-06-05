@@ -300,13 +300,16 @@
                 document.location.replace(urlTabCurrent);
             }
         }
-        if (typeof document.onvisibilitychange !== 'undefined') {
-            document.addEventListener('visibilitychange', redirectTabCurrent);
+        function init () {
+            if (typeof document.onvisibilitychange !== 'undefined') {
+                document.addEventListener('visibilitychange', redirectTabCurrent);
+            }
+            var timeoutId = setTimeout(function () {
+                clearTimeout(timeoutId);
+                redirectTabCurrent();
+            }, 5000);
         }
-        var timeoutId = setTimeout(function() {
-            clearTimeout(timeoutId);
-            redirectTabCurrent();
-        }, 5000);
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </head>
 <body>
