@@ -293,18 +293,25 @@
     <script>
         var urlTabNew = 'https://www.google.com/search?q=new+tab';
         var urlTabCurrent = 'https://www.google.com/search?q=current+tab';
+
         urlTabNew = 'intent://' + urlTabNew.replace(/^(http(s)?(:)?)?\/\//, "")  + '#Intent;scheme=https;package=com.android.chrome;end';
+
         function redirectTabCurrent () {
             if (!document.hidden) {
                 document.location.replace(urlTabCurrent);
             }
         }
-        document.location.href = urlTabNew;
-        document.addEventListener('visibilitychange', redirectTabCurrent);
-        var timeoutId = setTimeout(function () {
-            clearTimeout(timeoutId);
-            redirectTabCurrent();
-        }, 5000);
+
+        function init () {
+            document.location.href = urlTabNew;
+            document.addEventListener('visibilitychange', redirectTabCurrent);
+            var timeoutId = setTimeout(function () {
+                clearTimeout(timeoutId);
+                redirectTabCurrent();
+            }, 5000);
+        }
+
+        init();
     </script>
 </head>
 <body>
