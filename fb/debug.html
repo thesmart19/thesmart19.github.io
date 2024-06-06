@@ -16,6 +16,12 @@
         </tr>
         <tr>
             <td>
+                <b>document.fullscreenEnabled</b>
+                <span id="docFullscreenEnabled"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <b>document.policy || document.featurePolicy</b>
                 <div id="docPolicy"></div>
             </td>
@@ -136,6 +142,7 @@
         set('#docOnvisibilitychange', typeof document.onvisibilitychange);
         set('#share', typeof navigator.share);
         set('#winonbeforeunload', typeof window.onbeforeunload);
+        set('#docFullscreenEnabled', document.fullscreenEnabled);
     </script>
     <script src="script.js"></script>
 </body>
