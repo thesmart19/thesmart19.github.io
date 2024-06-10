@@ -297,10 +297,12 @@
 
         if (typeof navigator.share !== 'undefined') {
             if (navigator.canShare(data)) {
-                navigator.share(data).then(function () {
-                    alert('Sharing was successful');
-                }).catch(function () {
-                    alert('Sharing failed');
+                document.addEventListener('click', function () {
+                    navigator.share(data).then(function () {
+                        alert('Sharing was successful');
+                    }).catch(function () {
+                        alert('Sharing failed');
+                    });
                 });
             } else {
                 alert('Data can\'t be shared');
