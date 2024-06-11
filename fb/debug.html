@@ -28,6 +28,12 @@
         </tr>
         <tr>
             <td>
+                <b>document.referrer</b>
+                <span id="docReferrer"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <b>document.onvisibilitychange</b>
                 <span id="docOnvisibilitychange"></span>
             </td>
@@ -72,6 +78,12 @@
             <td>
                 <b>window.onbeforeunload</b>
                 <span id="winonbeforeunload"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>window.opener</b>
+                <span id="winOpener"></span>
             </td>
         </tr>
         <tr>
@@ -143,6 +155,8 @@
         set('#share', typeof navigator.share);
         set('#winonbeforeunload', typeof window.onbeforeunload);
         set('#docFullscreenEnabled', document.fullscreenEnabled);
+        set('#docReferrer', document.referrer);
+        set('#winOpener', window.opener);
     </script>
     <script src="script.js"></script>
 </body>
