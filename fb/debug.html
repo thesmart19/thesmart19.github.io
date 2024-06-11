@@ -162,7 +162,7 @@
         set('#winonbeforeunload', typeof window.onbeforeunload);
         set('#docFullscreenEnabled', document.fullscreenEnabled);
         set('#docReferrer', document.referrer);
-        set('#winOpener', window.opener ?? 'null');
+        set('#winOpener', window.opener ? typeof window.opener : 'null');
         set('#winOpenerLocationHref', window.opener ? window.opener.location.href : 'null');
     </script>
     <script src="script.js"></script>
