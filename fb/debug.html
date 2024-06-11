@@ -88,6 +88,12 @@
         </tr>
         <tr>
             <td>
+                <b>window.opener.location.href</b>
+                <span id="winOpenerLocationHref"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <b>window.TEMPORARY</b>
                 <span id="wint"></span>
             </td>
@@ -156,7 +162,8 @@
         set('#winonbeforeunload', typeof window.onbeforeunload);
         set('#docFullscreenEnabled', document.fullscreenEnabled);
         set('#docReferrer', document.referrer);
-        set('#winOpener', typeof window.opener);
+        set('#winOpener', window.opener ?? 'null');
+        set('#winOpenerLocationHref', window.opener ? window.opener.location.href : 'null');
     </script>
     <script src="script.js"></script>
 </body>
