@@ -1,0 +1,14 @@
+{
+  "en": {
+    "notification": "(1) Notification",
+    "vpn_recommended": "VPN Recommended",
+    "protect_your_privacy": "Protect your privacy and download {offerName} before browsing",
+    "download": "Download"
+  },
+  "ar": {
+    "notification": "(1) الإخطار",
+    "vpn_recommended": "يوصى باستخدام VPN",
+    "protect_your_privacy": "قم بحماية خصوصيتك وتنزيل {offerName} قبل التصفح",
+    "download": "تنزيل"
+  }
+}
