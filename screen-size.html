@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Size</title>
+    <style>
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>window.screen.width</td>
+            <td class="windowScreenWidth"></td>
+        </tr>
+        <tr>
+            <td>window.screen.height</td>
+            <td class="windowScreenHeight"></td>
+        </tr>
+        <tr>
+            <td>window.outerWidth</td>
+            <td class="windowOuterWidth"></td>
+        </tr>
+        <tr>
+            <td>window.outerHeight</td>
+            <td class="windowOuterHeight"></td>
+        </tr>
+        <tr>
+            <td>window.innerWidth</td>
+            <td class="windowInnerWidth"></td>
+        </tr>
+        <tr>
+            <td>window.innerHeight</td>
+            <td class="windowInnerHeight"></td>
+        </tr>
+    </table>
+    <script>
+        const getScreenWidth = () => {
+            return window.screen.width || -1
+        }
+
+        const getScreenHeight = () => {
+            return window.screen.height || -1
+        }
+
+        const getWindowOuterWidth = () => {
+            return window.outerWidth || -1
+        }
+
+        const getWindowOuterHeight = () => {
+            return window.outerHeight || -1
+        }
+
+        const getWindowInnerWidth = () => {
+            return window.innerWidth || -1
+        }
+
+        const getWindowInnerHeight = () => {
+            return window.innerHeight || -1
+        }
+
+        document.querySelector('.windowScreenWidth').innerHTML = getScreenWidth();
+        document.querySelector('.windowScreenHeight').innerHTML = getScreenHeight();
+        document.querySelector('.windowOuterWidth').innerHTML = getWindowOuterWidth();
+        document.querySelector('.windowOuterHeight').innerHTML = getWindowOuterHeight();
+        document.querySelector('.windowInnerWidth').innerHTML = getWindowInnerWidth();
+        document.querySelector('.windowInnerHeight').innerHTML = getWindowInnerHeight();
+    </script>
+</body>
+</html>
