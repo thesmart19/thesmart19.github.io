@@ -16,6 +16,7 @@
 <body>
     <h1>Deeplink</h1>
     <h2 id="dplios">iOS: Click to open deeplink</h2>
+    <h2 id="dpliosopera">iOS: Click to open deeplink in OPERA browser</h2>
     <h2 id="dpland">Android: Click to open intent link</h2>
     <h3></h3>
     <script>
@@ -23,13 +24,14 @@
             const url = 'www.google.com/search?q=deeplink';
             const androidIntentLink = 'intent://' + url.toString().replace(/^(http(s)?(:)?)?\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end'
             const iOSDeepLink = `googlechromes://${url}`;
+            const iOSDeepLinkOpera = `touch-https://${url}`;
 
             document.querySelector('#dpland').addEventListener('click', () => {
                 const newTab = window.open(androidIntentLink, '_blank');
 
                 try {
                     if (newTab.location.href) {
-                        console.log('Window opened successfully');
+                        document.querySelector('h3').innerText = `window.open success`;
                     }
                 } catch (e) {
                     document.querySelector('h3').innerText = `window.open failed to open ${androidIntentLink}, error: ${e}`;
@@ -41,10 +43,22 @@
 
                 try {
                     if (newTab.location.href) {
-                        console.log('Window opened successfully');
+                        document.querySelector('h3').innerText = `window.open success`;
                     }
                 } catch (e) {
                     document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLink}, error: ${e}`;
+                }
+            });
+
+            document.querySelector('#dpliosopera').addEventListener('click', () => {
+                const newTab = window.open(iOSDeepLinkOpera, '_blank');
+
+                try {
+                    if (newTab.location.href) {
+                        document.querySelector('h3').innerText = `window.open success`;
+                    }
+                } catch (e) {
+                    document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLinkOpera}, error: ${e}`;
                 }
             });
         })()
