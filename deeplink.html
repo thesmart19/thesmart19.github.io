@@ -15,16 +15,24 @@
 </head>
 <body>
     <h1>Deeplink</h1>
-    <h2>Click to open deeplink</h2>
+    <h2 id="dplios">iOS: Click to open deeplink</h2>
+    <h2 id="dpland">Android: Click to open intent link</h2>
     <h3></h3>
     <script>
         (() => {
             const url = 'www.google.com/search?q=deeplink';
-            const deeplink = `googlechromes://${url}`;
+            const androidIntentLink = 'intent://' + url.toString().replace(/^(http(s)?(:)?)?\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end'
+            const iOSDeepLink = `googlechromes://${url}`;
 
-            document.addEventListener('click', () => {
-                if (!window.open(deeplink, '_blank')) {
-                    document.querySelector('h3').innerText = `window.open failed to open ${deeplink}`;
+            document.querySelector('#dpland').addEventListener('click', () => {
+                if (!window.open(androidIntentLink, '_blank')) {
+                    document.querySelector('h3').innerText = `window.open failed to open ${androidIntentLink}`;
+                }
+            });
+
+            document.querySelector('#dplios').addEventListener('click', () => {
+                if (!window.open(iOSDeepLink, '_blank')) {
+                    document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLink}`;
                 }
             });
         })()
