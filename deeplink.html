@@ -15,7 +15,6 @@
 </head>
 <body>
     <h1>Deeplink</h1>
-    <h2 id="stimer"></h2>
     <h2 id="winfocus">window: </h2>
     <h2 id="dplios">iOS: Click to open deeplink</h2>
     <h2 id="dpliosopera">iOS: Click to open deeplink in OPERA browser</h2>
@@ -38,19 +37,12 @@
                 document.querySelector('h3').innerText += `[${visibilityStack.join(', ')}]`;
             });
 
-            function isValidUrl(string) {
-                try {
-                    new URL(string);
-                    return true;
-                } catch (err) {
-                    return false;
-                }
-            }
-
             const url = 'www.google.com/search?q=deeplink';
             const androidIntentLink = 'intent://' + url.toString().replace(/^(http(s)?(:)?)?\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end'
             const iOSDeepLink = `googlechromes://${url}`;
             const iOSDeepLinkOpera = `touch-https://${url}`;
+
+            window.location.href = iOSDeepLink;
 
             document.querySelector('#dpland').addEventListener('click', () => {
                 const newTab = window.open(androidIntentLink, '_blank');
@@ -63,18 +55,6 @@
                     document.querySelector('h3').innerText += `[window.open failed to open ${androidIntentLink}, error: ${e}]`;
                 }
             });
-
-            if (isValidUrl(iOSDeepLink)) {
-                document.querySelector('h3').innerText += `[URL is valid: ${iOSDeepLink}]`;
-            } else {
-                document.querySelector('h3').innerText += `[URL IS NOT valid: ${iOSDeepLink}]`;
-            }
-
-            try {
-                window.location.href = iOSDeepLink;
-            } catch (e) {
-                document.querySelector('h3').innerText += `[failed to open ${iOSDeepLink}, error: ${e}]`;
-            }
 
             document.querySelector('#dplios').addEventListener('click', () => {
                 const newTab = window.open(iOSDeepLink, '_blank');
@@ -99,10 +79,6 @@
                     document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLinkOpera}, error: ${e}]`;
                 }
             });
-
-            setInterval(() => {
-                document.querySelector('#stimer').innerText = (new Date()).getSeconds();
-            }, 1000);
         })()
     </script>
 </body>
