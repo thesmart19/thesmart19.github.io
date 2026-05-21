@@ -70,10 +70,16 @@
                     document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLink}, error: ${e}]`;
                 }
             });
+            let visibilityCounter = 0;
             let visibilityTime = 0;
             document.addEventListener("visibilitychange", (event) => {
+                visibilityCounter += 1;
                 visibilityTime = Date.now() - visibilityTime;
                 document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState} ${visibilityTime}]`;
+
+                if (visibilityCounter === 2 && visibilityTime < 1000) {
+                    document.querySelector('h3').innerText += `[OPEN SUCCESS]`
+                }
             });
 
             document.querySelector('#dpliosopera').addEventListener('click', () => {
