@@ -23,11 +23,19 @@
     <h3></h3>
     <script>
         (() => {
+            const visibilityStack = [];
+
+            document.addEventListener("visibilitychange", () => {
+                visibilityStack.push(document.visibilityState);
+            });
+
             window.addEventListener('focus', () => {
                 document.querySelector('#winfocus').innerText += '[focused]';
+                document.querySelector('h3').innerText += `[${visibilityStack.join(', ')}]`;
             });
             window.addEventListener('blur', () => {
                 document.querySelector('#winfocus').innerText += '[blurred]';
+                document.querySelector('h3').innerText += `[${visibilityStack.join(', ')}]`;
             });
 
             function isValidUrl(string) {
@@ -77,17 +85,6 @@
                     }
                 } catch (e) {
                     document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLink}, error: ${e}]`;
-                }
-            });
-            let visibilityCounter = 0;
-            let visibilityTime = 0;
-            document.addEventListener("visibilitychange", (event) => {
-                visibilityCounter += 1;
-                visibilityTime = Date.now() - visibilityTime;
-                document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState} ${visibilityTime}]`;
-
-                if (visibilityCounter === 2 && visibilityTime < 1000) {
-                    document.querySelector('h3').innerText += `[OPEN SUCCESS]`
                 }
             });
 
