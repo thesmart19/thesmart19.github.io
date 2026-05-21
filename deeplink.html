@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deeplink</title>
+</head>
+<body>
+    <h1>Deeplink</h1>
+    <h2></h2>
+    <script>
+        (() => {
+            const url = 'www.google.com/search?q=deeplink';
+            const deeplink = `googlechromes://${url}`;
+
+            if (!window.open(deeplink, '_blank')) {
+                document.querySelector('h2').innerText = `window.open failed to open ${deeplink}`;
+            }
+        })()
+    </script>
+</body>
+</html>
