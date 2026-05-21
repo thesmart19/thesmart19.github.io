@@ -35,7 +35,7 @@
                 if (visibilityStack.length === 1 && visibilityStack[0] === 'hidden') {
                     msg += 'opened';
                 } else {
-                    msg += 'cancelled';
+                    msg += 'cancelled (or not installed)';
                 }
 
                 document.querySelector('h3').innerText = `[${msg}]`;
