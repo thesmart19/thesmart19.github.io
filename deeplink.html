@@ -21,6 +21,15 @@
     <h3></h3>
     <script>
         (() => {
+            function isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            }
+
             const url = 'www.google.com/search?q=deeplink';
             const androidIntentLink = 'intent://' + url.toString().replace(/^(http(s)?(:)?)?\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end'
             const iOSDeepLink = `googlechromes://${url}`;
@@ -38,11 +47,18 @@
                 }
             });
 
+            if (isValidUrl(iOSDeepLink)) {
+                document.querySelector('h3').innerText += `[URL is valid: ${iOSDeepLink}]`;
+            } else {
+                document.querySelector('h3').innerText += `[URL IS NOT valid: ${iOSDeepLink}]`;
+            }
+            /*
             try {
                 window.location.href = iOSDeepLink;
             } catch (e) {
                 document.querySelector('h3').innerText += `[failed to open ${iOSDeepLink}, error: ${e}]`;
             }
+            */
 
             document.querySelector('#dplios').addEventListener('click', () => {
                 const newTab = window.open(iOSDeepLink, '_blank');
