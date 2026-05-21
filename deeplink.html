@@ -20,10 +20,10 @@
         (() => {
             const visibilityStack = [];
 
-            const url = 'www.google.com/search?q=deeplink';
-            const iOSDeepLink = `googlechromes://${url}`;
+            const url = 'www.google.com';
+            const iOSDeepLinkChrome = `googlechromes://${url}`;
 
-            window.location.href = iOSDeepLink;
+            window.location.href = iOSDeepLinkChrome;
 
             document.addEventListener("visibilitychange", () => {
                 visibilityStack.push(document.visibilityState);
@@ -38,7 +38,7 @@
                     msg += 'cancelled';
                 }
 
-                document.querySelector('h3').innerText += `[${msg}]`;
+                document.querySelector('h3').innerText = `[${msg}]`;
             });
         })()
     </script>
