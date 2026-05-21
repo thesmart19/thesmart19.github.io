@@ -70,8 +70,10 @@
                     document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLink}, error: ${e}]`;
                 }
             });
+            let visibilityTime = 0;
             document.addEventListener("visibilitychange", (event) => {
-                document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState} ${Date.now()}]`;
+                visibilityTime = Date.now() - visibilityTime;
+                document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState} ${visibilityTime}]`;
             });
 
             document.querySelector('#dpliosopera').addEventListener('click', () => {
