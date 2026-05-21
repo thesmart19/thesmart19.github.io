@@ -15,6 +15,7 @@
 </head>
 <body>
     <h1>Deeplink</h1>
+    <h2 id="stimer"></h2>
     <h2 id="dplios">iOS: Click to open deeplink</h2>
     <h2 id="dpliosopera">iOS: Click to open deeplink in OPERA browser</h2>
     <h2 id="dpland">Android: Click to open intent link</h2>
@@ -93,6 +94,10 @@
                     document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLinkOpera}, error: ${e}]`;
                 }
             });
+
+            setInterval(() => {
+                document.querySelector('#stimer').innerText = (new Date()).getSeconds();
+            }, 1000);
         })()
     </script>
 </body>
