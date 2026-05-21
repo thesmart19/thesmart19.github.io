@@ -31,17 +31,17 @@
 
                 try {
                     if (newTab.location.href) {
-                        document.querySelector('h3').innerText = `window.open success`;
+                        document.querySelector('h3').innerText += `[window.open success]`;
                     }
                 } catch (e) {
-                    document.querySelector('h3').innerText = `window.open failed to open ${androidIntentLink}, error: ${e}`;
+                    document.querySelector('h3').innerText += `[window.open failed to open ${androidIntentLink}, error: ${e}]`;
                 }
             });
 
             try {
                 window.location.href = iOSDeepLink;
             } catch (e) {
-                document.querySelector('h3').innerText = `failed to open ${iOSDeepLink}, error: ${e}`;
+                document.querySelector('h3').innerText += `[failed to open ${iOSDeepLink}, error: ${e}]`;
             }
 
             document.querySelector('#dplios').addEventListener('click', () => {
@@ -49,10 +49,10 @@
 
                 try {
                     if (newTab.location.href) {
-                        document.querySelector('h3').innerText = `window.open success`;
+                        document.querySelector('h3').innerText += `[window.open success]`;
                     }
                 } catch (e) {
-                    document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLink}, error: ${e}`;
+                    document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLink}, error: ${e}]`;
                 }
             });
 
@@ -61,10 +61,10 @@
 
                 try {
                     if (newTab.location.href) {
-                        document.querySelector('h3').innerText = `window.open success`;
+                        document.querySelector('h3').innerText += `[window.open success]`;
                     }
                 } catch (e) {
-                    document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLinkOpera}, error: ${e}`;
+                    document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLinkOpera}, error: ${e}]`;
                 }
             });
         })()
