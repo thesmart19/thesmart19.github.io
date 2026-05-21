@@ -25,14 +25,26 @@
             const iOSDeepLink = `googlechromes://${url}`;
 
             document.querySelector('#dpland').addEventListener('click', () => {
-                if (!window.open(androidIntentLink, '_blank')) {
-                    document.querySelector('h3').innerText = `window.open failed to open ${androidIntentLink}`;
+                const newTab = window.open(androidIntentLink, '_blank');
+
+                try {
+                    if (newTab.location.href) {
+                        console.log('Window opened successfully');
+                    }
+                } catch (e) {
+                    document.querySelector('h3').innerText = `window.open failed to open ${androidIntentLink}, error: ${e}`;
                 }
             });
 
             document.querySelector('#dplios').addEventListener('click', () => {
-                if (!window.open(iOSDeepLink, '_blank')) {
-                    document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLink}`;
+                const newTab = window.open(iOSDeepLink, '_blank');
+
+                try {
+                    if (newTab.location.href) {
+                        console.log('Window opened successfully');
+                    }
+                } catch (e) {
+                    document.querySelector('h3').innerText = `window.open failed to open ${iOSDeepLink}, error: ${e}`;
                 }
             });
         })()
