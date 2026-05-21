@@ -72,7 +72,7 @@
                 }
             });
             document.addEventListener("visibilitychange", (event) => {
-                document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState} ${(new Date()).getSeconds()}]`;
+                document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState} ${Date.now()}]`;
             });
 
             document.querySelector('#dpliosopera').addEventListener('click', () => {
