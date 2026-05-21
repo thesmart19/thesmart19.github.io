@@ -52,13 +52,12 @@
             } else {
                 document.querySelector('h3').innerText += `[URL IS NOT valid: ${iOSDeepLink}]`;
             }
-            /*
+
             try {
                 window.location.href = iOSDeepLink;
             } catch (e) {
                 document.querySelector('h3').innerText += `[failed to open ${iOSDeepLink}, error: ${e}]`;
             }
-            */
 
             document.querySelector('#dplios').addEventListener('click', () => {
                 const newTab = window.open(iOSDeepLink, '_blank');
