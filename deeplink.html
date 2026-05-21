@@ -71,6 +71,9 @@
                     document.querySelector('h3').innerText += `[window.open failed to open ${iOSDeepLink}, error: ${e}]`;
                 }
             });
+            document.addEventListener("visibilitychange", (event) => {
+                document.querySelector('h3').innerText += `[document.visibilityState = ${document.visibilityState}]`;
+            });
 
             document.querySelector('#dpliosopera').addEventListener('click', () => {
                 const newTab = window.open(iOSDeepLinkOpera, '_blank');
