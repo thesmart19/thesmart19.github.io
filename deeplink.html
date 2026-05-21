@@ -16,7 +16,7 @@
 <body>
     <h1>Deeplink</h1>
     <h2 id="stimer"></h2>
-    <h2 id="winfocus"></h2>
+    <h2 id="winfocus">window: </h2>
     <h2 id="dplios">iOS: Click to open deeplink</h2>
     <h2 id="dpliosopera">iOS: Click to open deeplink in OPERA browser</h2>
     <h2 id="dpland">Android: Click to open intent link</h2>
@@ -24,10 +24,10 @@
     <script>
         (() => {
             window.addEventListener('focus', () => {
-                document.querySelector('#winfocus').innerText = 'window focused';
+                document.querySelector('#winfocus').innerText += '[focused]';
             });
             window.addEventListener('blur', () => {
-                document.querySelector('#winfocus').innerText = 'window blurred';
+                document.querySelector('#winfocus').innerText += '[blurred]';
             });
 
             function isValidUrl(string) {
