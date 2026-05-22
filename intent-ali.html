@@ -44,6 +44,9 @@
                 alert('pagehide');
             });
 
+            window.addEventListener("beforeunload", (event) => {
+                alert('beforeunload');
+            });
 
             window.addEventListener('hashchange', () => {
                 document.querySelector('h3').innerText += `[hash has changed]`;
