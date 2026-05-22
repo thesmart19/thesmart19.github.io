@@ -7,11 +7,8 @@
 </head>
 <body>
     <h1>Intent</h1>
-    <a href="intent://aliexpress/#Intent;scheme=aliexpress;package=com.alibaba.aliexpresshd;S.browser_fallback_url=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3Dhow%2Bto%2Binstall%2Baliexpress;end">
-        Aliexpress
-    </a>
+    <a href="">Click me</a>
 
-    <!--
     <script>
         (() => {
             const intentPackage = 'com.alibaba.aliexpresshd';
@@ -21,7 +18,7 @@
             let intentURI = 'intent://#Intent;'
             intentURI += `package=${intentPackage};`
             intentURI += `scheme=${intentScheme};`
-            intentURI += `S.browser_fallback_url=${intentUrlFallback};`
+            intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
 
             const regex = {
@@ -46,17 +43,14 @@
             const shouldIntent = isAndroidWebView || isFacebookBrowser || isFacebookMessenger || isInstagram || isTwitter
 
             if (shouldIntent) {
+                document.querySelector('a').href = intentURI;
+
                 window.addEventListener('hashchange', () => {
                     console.log("The hash has changed!");
                 });
 
                 document.location.href = intentURI;
-
-                document.addEventListener('click', () => {
-                    document.location.href = intentURI;
-                });
             }
         })()
     </script>
-    -->
 </html>
