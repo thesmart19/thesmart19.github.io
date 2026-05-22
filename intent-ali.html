@@ -12,6 +12,7 @@
     <h4></h4>
     Event stack:
     <pre style="white-space:wrap"></pre>
+    <div id="tcounter"></div>
 
     <script>
         (() => {
@@ -86,6 +87,12 @@
                         time: Date.now(),
                     });
                 });
+
+                let counter = 0;
+                setInterval(() => {
+                    counter += 1;
+                    document.querySelector('#tcounter').innerText = counter;
+                }, 1000);
 
                 document.addEventListener('click', () => {
                     eventStack.push({
