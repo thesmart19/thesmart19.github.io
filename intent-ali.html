@@ -65,7 +65,7 @@
                             document.querySelector('h4').innerText = 'Failed to open the Aliexpress app.';
                         } else if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
-                            eventStack[0].event === 'hidden') {
+                            eventStack[1].event === 'hidden') {
                             document.querySelector('h4').innerText = 'Aliexpress app opened successfully!';
                         }
                     }
