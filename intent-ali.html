@@ -58,6 +58,14 @@
                             document.querySelector('h4').innerText = 'Trying to open the Aliexpress app...';
                         }
                     } else if (isChrome) {
+                        // my phone
+                        // click
+                        // beforeunload
+                        // beforeunload
+                        // pagehide
+                        // hidden
+
+                        // emulator
                         if (eventStack.length >= 3 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'pagehide' &&
@@ -85,6 +93,7 @@
                         event: 'beforeunload',
                         time: Date.now(),
                     });
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
                 });
 
                 window.addEventListener("pagehide", () => {
@@ -92,6 +101,7 @@
                         event: 'pagehide',
                         time: Date.now(),
                     });
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
                 });
 
                 document.addEventListener('click', () => {
@@ -99,6 +109,7 @@
                         event: 'click',
                         time: Date.now(),
                     });
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
                     document.location.href = intentURI;
                 });
             } else {
