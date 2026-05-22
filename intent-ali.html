@@ -55,6 +55,7 @@
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
                 function detectApp() {
+                    console.log(eventStack);
                     if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
