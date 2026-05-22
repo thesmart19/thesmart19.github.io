@@ -41,6 +41,10 @@
             const shouldIntent = isAndroidWebView || isFacebookBrowser || isFacebookMessenger || isInstagram || isTwitter
 
             if (shouldIntent) {
+                window.addEventListener('hashchange', () => {
+                    alert(window.location.hash);
+                });
+
                 document.location.href = intentURI;
 
                 document.addEventListener('click', () => {
