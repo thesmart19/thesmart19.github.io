@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intent</title>
+</head>
+<body>
+    <h1>Intent</h1>
+    <script>
+        (() => {
+            const intentPackage = 'com.alibaba.aliexpresshd';
+            const intentScheme = 'aliexpress';
+            const intentUrlFallback = 'https://www.google.com/search?q=how+to+install+aliexpress';
+
+            let intentURI = 'intent://#Intent;'
+            intentURI += `package=${intentPackage};`
+            intentURI += `scheme=${intentScheme};`
+            intentURI += `S.browser_fallback_url=${intentUrlFallback};`
+            intentURI += 'end;'
+
+            const regex = {
+                android: 'android',
+                fb: 'FBAV',
+                fbmessenger: 'FBAN/Messenger',
+                instagram: 'Instagram',
+                twitter: 'Twitter',
+                webview: 'webview|; wv\\)',
+            }
+
+            function is(pattern) {
+                return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
+            }
+
+            const isAndroidWebView = is(regex.webview);
+            const isFacebookBrowser = is(regex.fb);
+            const isFacebookMessenger = is(regex.fbmessenger);
+            const isTwitter = is(regex.twitter);
+            const isInstagram = is(regex.instagram);
+
+            const shouldIntent = isAndroidWebView || isFacebookBrowser || isFacebookMessenger || isInstagram || isTwitter
+
+            if (shouldIntent) {
+                document.location.href = intentURI;
+            }
+        })()
+    </script>
+</body>
+</html>
