@@ -42,7 +42,7 @@
 
             if (shouldIntent) {
                 window.addEventListener('hashchange', () => {
-                    alert(window.location.hash);
+                    console.log("The hash has changed!");
                 });
 
                 document.location.href = intentURI;
