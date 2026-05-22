@@ -88,6 +88,13 @@
                     });
                 });
 
+                window.addEventListener("pageshow", () => {
+                    eventStack.push({
+                        event: 'pageshow',
+                        time: Date.now(),
+                    });
+                });
+
                 document.addEventListener('freeze', (event) => {
                     eventStack.push({
                         event: 'freeze',
