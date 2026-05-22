@@ -47,6 +47,7 @@
 
             if (isAndroid) {
                 document.querySelector('h3').innerText += 'Browser:' + (isChrome ? 'Chrome' : isAndroidWebView ? 'Android WebView' : 'Other') + ' ';
+                document.querySelector('h3').innerText += navigator.userAgent + ' ';
 
                 function detectApp() {
                     document.querySelector('pre').innerText = JSON.stringify(eventStack);
