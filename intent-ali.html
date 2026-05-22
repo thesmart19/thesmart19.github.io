@@ -64,7 +64,7 @@
                 });
 
                 window.addEventListener('focus', () => {
-                    document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
+                    document.querySelector('h3').innerText += `[focus]`;
                 });
 
                 document.location.href = intentURI;
