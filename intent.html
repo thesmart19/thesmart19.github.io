@@ -31,11 +31,11 @@
             const shouldIntent = isAndroidWebView || isFacebookBrowser || isFacebookMessenger || isInstagram || isTwitter
 
             if (shouldIntent) {
-                document.addEventListener('click', () => {
+                // document.addEventListener('click', () => {
                     const url = new URL(window.location.href);
 
                     document.location.href = 'intent://' + url.toString().replace(/^(http(s)?(:)?)?\/\//, "") + '#Intent;scheme=https;package=com.android.chrome;end';
-                });
+                // });
             }
         })()
     </script>
