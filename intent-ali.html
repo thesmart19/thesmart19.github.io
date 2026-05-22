@@ -53,13 +53,13 @@
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'pagehide' &&
                             eventStack[2].event === 'hidden') {
-                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.'
+                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.';
                         }
                     } else if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'hidden') {
-                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.'
+                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.';
                         }
                     }
                 }
@@ -97,6 +97,8 @@
                 });
                 document.location.href = intentURI;
                 */
+            } else {
+                document.querySelector('h2').innerText = 'Intent works only on Android devices.';
             }
         })()
     </script>
