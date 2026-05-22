@@ -7,7 +7,6 @@
 </head>
 <body>
     <h1>Aliexpress Android Intent</h1>
-    <a href="">Click me</a>
     <h3></h3>
 
     <script>
@@ -24,28 +23,21 @@
             intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
 
-            const visibilityStack = [];
-
-            document.querySelector('a').href = intentURI;
-
-            document.querySelector('a').addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                document.location.href = e.target.href;
-            });
+            const eventStack = [];
 
             document.addEventListener("visibilitychange", () => {
-                visibilityStack.push(document.visibilityState);
-                document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
+                eventStack.push(document.visibilityState);
+                document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
             });
 
             window.addEventListener("pagehide", (event) => {
-                document.querySelector('h3').innerText += `[pagehide]`;
+                eventStack.push('pagehide');
+                document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
             });
 
             document.addEventListener('click', () => {
-                document.querySelector('h3').innerText += `[click]`;
+                eventStack.push('click');
+                document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
                 document.location.href = intentURI;
             });
 
