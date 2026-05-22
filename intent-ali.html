@@ -35,13 +35,15 @@
                 document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
             });
 
-            document.addEventListener('click', () => {
+            /*document.addEventListener('click', () => {
                 eventStack.push('click');
                 document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
                 document.location.href = intentURI;
-            });
+            });*/
 
-            // document.location.href = intentURI;
+            eventStack.push('intent');
+            document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
+            document.location.href = intentURI;
         })()
     </script>
 </html>
