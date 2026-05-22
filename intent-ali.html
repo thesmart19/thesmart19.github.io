@@ -12,7 +12,6 @@
     <h4></h4>
     Event stack:
     <pre style="white-space:wrap"></pre>
-    <div id="tcounter"></div>
 
     <script>
         (() => {
@@ -88,33 +87,6 @@
                     });
                 });
 
-                window.addEventListener("pageshow", () => {
-                    eventStack.push({
-                        event: 'pageshow',
-                        time: Date.now(),
-                    });
-                });
-
-                document.addEventListener('freeze', (event) => {
-                    eventStack.push({
-                        event: 'freeze',
-                        time: Date.now(),
-                    });
-                });
-
-                document.addEventListener('resume', (event) => {
-                    eventStack.push({
-                        event: 'resume',
-                        time: Date.now(),
-                    });
-                });
-
-                let counter = 0;
-                setInterval(() => {
-                    counter += 1;
-                    document.querySelector('#tcounter').innerText = counter;
-                }, 1000);
-
                 document.addEventListener('click', () => {
                     eventStack.push({
                         event: 'click',
@@ -122,14 +94,6 @@
                     });
                     document.location.href = intentURI;
                 });
-
-                /*
-                eventStack.push({
-                    event: 'load',
-                    time: Date.now(),
-                });
-                document.location.href = intentURI;
-                */
             } else {
                 document.querySelector('h2').innerText = 'Intent works only on Android devices.';
             }
