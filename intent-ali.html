@@ -44,10 +44,20 @@
 
             if (isAndroid) {
                 function detectApp() {
+                    document.querySelector('h3').innerText = JSON.stringify(eventStack);
                     if (isChrome) {
-                        document.querySelector('h3').innerText = JSON.stringify(eventStack);
+                        if (eventStack.length >= 3 &&
+                            eventStack[0].event === 'click' &&
+                            eventStack[1].event === 'pagehide' &&
+                            eventStack[2].event === 'hidden') {
+                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.'
+                        }
                     } else if (isAndroidWebView) {
-                        document.querySelector('h3').innerText = JSON.stringify(eventStack);
+                        if (eventStack.length >= 2 &&
+                            eventStack[0].event === 'click' &&
+                            eventStack[1].event === 'hidden') {
+                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.'
+                        }
                     }
                 }
 
