@@ -21,7 +21,7 @@
             let eventStack = [];
 
             if (window.localStorage) {
-                eventStack = JSON.parse(window.localStorage.getItem('eventStack')) || [];
+                document.querySelector('pre').innerText = window.localStorage.getItem('eventStack');
                 window.localStorage.removeItem('eventStack');
             }
 
@@ -55,6 +55,7 @@
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
                 function detectApp() {
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     if (window.localStorage) {
                         window.localStorage.setItem('eventStack', JSON.stringify(eventStack, null, 2));
                     }
@@ -83,7 +84,6 @@
                         event: document.visibilityState,
                         time: Date.now(),
                     });
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     detectApp();
                 });
 
@@ -92,7 +92,6 @@
                         event: 'pagehide',
                         time: Date.now(),
                     });
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     detectApp();
                 });
 
@@ -101,7 +100,6 @@
                         event: 'click',
                         time: Date.now(),
                     });
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     detectApp();
                     document.location.href = intentURI;
                 });
