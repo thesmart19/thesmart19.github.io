@@ -14,6 +14,7 @@
             const intentPackage = 'com.alibaba.aliexpresshd';
             const intentScheme = 'aliexpress';
             const intentUrlFallback = 'https://www.google.com/search?q=how+to+install+aliexpress';
+            const eventStack = [];
 
             let intentURI = 'intent://#Intent;'
             intentURI += `package=${intentPackage};`
@@ -23,29 +24,67 @@
             intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
 
-            const eventStack = [];
+            const regex = {
+                android: 'android',
+                webview: 'webview|; wv\\)',
+            }
 
-            document.addEventListener("visibilitychange", () => {
-                eventStack.push(document.visibilityState + ' ' + Date.now());
-                document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
-            });
+            function is(pattern) {
+                return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
+            }
 
-            window.addEventListener("pagehide", (event) => {
-                eventStack.push('pagehide' + ' ' + Date.now());
-                document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
-            });
+            const isAndroid = is(regex.android);
+            const isAndroidWebView = is(regex.webview);
+            const ua = navigator.userAgent;
+            const chromeVersionChromeMatch = ua.match(/Chrome\/([0-9]{1,})/) || [];
+            const chromeVersionCriOSMatch = ua.match(/CriOS\/([0-9]{1,})/) || [];
+            const chromeVersion = parseInt(chromeVersionChromeMatch[1], 10) || parseInt(chromeVersionCriOSMatch[1], 10);
+            const isYandexBrowser = /YaBrowser/.test(ua);
+            const isChrome = chromeVersion && !isYandexBrowser;
 
-            document.addEventListener('click', () => {
-                eventStack.push('click' + ' ' + Date.now());
-                document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
+            if (isAndroid) {
+                function detectApp() {
+                    if (isChrome) {
+                        document.querySelector('h3').innerText = JSON.stringify(eventStack);
+                    } else if (isAndroidWebView) {
+                        document.querySelector('h3').innerText = JSON.stringify(eventStack);
+                    }
+                }
+
+                document.addEventListener("visibilitychange", () => {
+                    eventStack.push({
+                        event: document.visibilityState,
+                        time: Date.now(),
+                    });
+
+                    if (document.visibilityState === 'hidden') {
+                        detectApp();
+                    }
+                });
+
+                window.addEventListener("pagehide", () => {
+                    eventStack.push({
+                        event: 'pagehide',
+                        time: Date.now(),
+                    });
+                });
+
+                document.addEventListener('click', () => {
+                    eventStack.push({
+                        event: 'click',
+                        time: Date.now(),
+                    });
+                    document.location.href = intentURI;
+                });
+
+                /*
+                eventStack.push({
+                    event: 'load',
+                    time: Date.now(),
+                });
                 document.location.href = intentURI;
-            });
-
-            /*
-            eventStack.push('intent');
-            document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
-            document.location.href = intentURI;
-            */
+                */
+            }
         })()
     </script>
 </html>
