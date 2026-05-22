@@ -60,11 +60,7 @@
                 });
 
                 window.addEventListener('hashchange', () => {
-                    console.log("The hash has changed!");
-                });
-
-                window.addEventListener('focus', () => {
-                    document.querySelector('h3').innerText += `[focus]`;
+                    document.querySelector('h3').innerText += `[hash has changed]`;
                 });
 
                 document.location.href = intentURI;
