@@ -8,6 +8,8 @@
 <body>
     <h1>Aliexpress Android Intent</h1>
     <h3></h3>
+    Event stack:
+    <pre></pre>
 
     <script>
         (() => {
@@ -44,7 +46,7 @@
 
             if (isAndroid) {
                 function detectApp() {
-                    document.querySelector('h3').innerText = JSON.stringify(eventStack);
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
                     if (isChrome) {
                         if (eventStack.length >= 3 &&
                             eventStack[0].event === 'click' &&
