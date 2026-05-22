@@ -88,6 +88,20 @@
                     });
                 });
 
+                document.addEventListener('freeze', (event) => {
+                    eventStack.push({
+                        event: 'freeze',
+                        time: Date.now(),
+                    });
+                });
+
+                document.addEventListener('resume', (event) => {
+                    eventStack.push({
+                        event: 'resume',
+                        time: Date.now(),
+                    });
+                });
+
                 let counter = 0;
                 setInterval(() => {
                     counter += 1;
