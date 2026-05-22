@@ -79,6 +79,14 @@
                     detectApp();
                 });
 
+                window.addEventListener("beforeunload", () => {
+                    eventStack.push({
+                        event: 'beforeunload',
+                        time: Date.now(),
+                    });
+                    detectApp();
+                });
+
                 window.addEventListener("pagehide", () => {
                     eventStack.push({
                         event: 'pagehide',
