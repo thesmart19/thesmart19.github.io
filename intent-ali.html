@@ -20,6 +20,11 @@
             const intentUrlFallback = 'https://www.google.com/search?q=how+to+install+aliexpress';
             let eventStack = [];
 
+            if (window.localStorage) {
+                eventStack = JSON.parse(window.localStorage.getItem('eventStack')) || [];
+                window.localStorage.removeItem('eventStack');
+            }
+
             let intentURI = 'intent://#Intent;'
             intentURI += `package=${intentPackage};`
             intentURI += `action=android.intent.action.VIEW;`
@@ -50,10 +55,6 @@
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
                 function detectApp() {
-                    if (eventStack.length === 0 && window.localStorage) {
-                        eventStack = JSON.parse(window.localStorage.getItem('eventStack')) || [];
-                    }
-
                     if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
