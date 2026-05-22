@@ -26,24 +26,26 @@
             const eventStack = [];
 
             document.addEventListener("visibilitychange", () => {
-                eventStack.push(document.visibilityState);
+                eventStack.push(document.visibilityState + ' ' + Date.now());
                 document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
             });
 
             window.addEventListener("pagehide", (event) => {
-                eventStack.push('pagehide');
+                eventStack.push('pagehide' + ' ' + Date.now());
                 document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
             });
 
-            /*document.addEventListener('click', () => {
-                eventStack.push('click');
+            document.addEventListener('click', () => {
+                eventStack.push('click' + ' ' + Date.now());
                 document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
                 document.location.href = intentURI;
-            });*/
+            });
 
+            /*
             eventStack.push('intent');
             document.querySelector('h3').innerText = `[${eventStack.join(',')}]`;
             document.location.href = intentURI;
+            */
         })()
     </script>
 </html>
