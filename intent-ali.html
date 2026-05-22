@@ -40,8 +40,8 @@
                 document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
             });
 
-            window.addEventListener("beforeunload", (event) => {
-                document.querySelector('h3').innerText += `[beforeunload]`;
+            window.addEventListener("pagehide", (event) => {
+                document.querySelector('h3').innerText += `[pagehide]`;
             });
 
             document.addEventListener('click', () => {
