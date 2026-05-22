@@ -55,7 +55,7 @@
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'hidden') {
-                            document.querySelector('h4').innerText = 'Failed to open the Aliexpress app.';
+                            document.querySelector('h4').innerText = 'Trying to open the Aliexpress app...';
                         }
                     } else if (isChrome) {
                         if (eventStack.length >= 3 &&
@@ -78,13 +78,6 @@
                     });
 
                     detectApp();
-                });
-
-                window.addEventListener("beforeunload", () => {
-                    eventStack.push({
-                        event: 'beforeunload',
-                        time: Date.now(),
-                    });
                 });
 
                 window.addEventListener("pagehide", () => {
