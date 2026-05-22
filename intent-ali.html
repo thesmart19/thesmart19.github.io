@@ -16,13 +16,10 @@
             const intentScheme = 'aliexpress';
             const intentUrlFallback = 'https://www.google.com/search?q=how+to+install+aliexpress';
 
-            const productId = '1005001234567890'; // productId ???
-
-            let intentURI = 'intent://'
-            intentURI += `product/${productId}#Intent;`;
+            let intentURI = 'intent://#Intent;'
             intentURI += `package=${intentPackage};`
-            // intentURI += `action=android.intent.action.VIEW;`
-            // intentURI += `category=android.intent.category.BROWSABLE;`
+            intentURI += `action=android.intent.action.VIEW;`
+            intentURI += `category=android.intent.category.BROWSABLE;`
             intentURI += `scheme=${intentScheme};`
             intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
