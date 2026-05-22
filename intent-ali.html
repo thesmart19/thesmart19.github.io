@@ -24,15 +24,6 @@
             intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
 
-
-            /*
-            intent://product/${productId}#Intent;` +
-    "scheme=aliexpress;" +
-    "package=com.alibaba.aliexpresshd;" +
-    `S.browser_fallback_url=https%3A%2F%2Fwww.aliexpress.com%2Fitem%2F${productId}.html;` +
-    "end";
-             */
-
             const visibilityStack = [];
 
             document.querySelector('a').href = intentURI;
@@ -53,7 +44,9 @@
                 document.querySelector('h3').innerText += `[hash has changed]`;
             });
 
-            document.location.href = intentURI;
+            document.addEventListener('click', () => {
+                document.location.href = intentURI;
+            });
         })()
     </script>
 </html>
