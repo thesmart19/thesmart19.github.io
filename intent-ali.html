@@ -40,15 +40,12 @@
                 document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
             });
 
-            window.addEventListener("pagehide", (event) => {
-                document.querySelector('h3').innerText += `[pagehide]`;
-            });
-
             window.addEventListener("beforeunload", (event) => {
                 document.querySelector('h3').innerText += `[beforeunload]`;
             });
 
             document.addEventListener('click', () => {
+                document.querySelector('h3').innerText += `[click]`;
                 document.location.href = intentURI;
             });
 
