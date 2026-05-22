@@ -80,12 +80,18 @@
                     detectApp();
                 });
 
+                window.addEventListener("beforeunload", () => {
+                    eventStack.push({
+                        event: 'beforeunload',
+                        time: Date.now(),
+                    });
+                });
+
                 window.addEventListener("pagehide", () => {
                     eventStack.push({
                         event: 'pagehide',
                         time: Date.now(),
                     });
-                    alert('pagehide');
                 });
 
                 document.addEventListener('click', () => {
