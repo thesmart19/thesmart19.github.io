@@ -8,6 +8,7 @@
 <body>
     <h1>Intent</h1>
     <a href="">Click me</a>
+    <h3></h3>
 
     <script>
         (() => {
@@ -20,6 +21,8 @@
             intentURI += `scheme=${intentScheme};`
             intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
+
+            const visibilityStack = [];
 
             const regex = {
                 android: 'android',
@@ -51,8 +54,16 @@
                     document.location.href = e.target.href;
                 });
 
+                document.addEventListener("visibilitychange", () => {
+                    visibilityStack.push(document.visibilityState);
+                });
+
                 window.addEventListener('hashchange', () => {
                     console.log("The hash has changed!");
+                });
+
+                window.addEventListener('focus', () => {
+                    document.querySelector('h3').innerText = `[${visibilityStack.join(',')}]`;
                 });
 
                 document.location.href = intentURI;
