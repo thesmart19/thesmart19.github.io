@@ -58,6 +58,7 @@
                             document.querySelector('h4').innerText = 'Trying to open the Aliexpress app...';
                         }
                     } else if (isChrome) {
+                        /*
                         if (eventStack.length >= 5 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'beforeunload' &&
@@ -65,7 +66,9 @@
                             eventStack[3].event === 'pagehide' &&
                             eventStack[4].event === 'hidden') {
                             document.querySelector('h4').innerText = 'Failed to open the Aliexpress app. Redirecting to fallback url...';
-                        } else if (eventStack.length >= 3 &&
+                        }
+                        */
+                        if (eventStack.length >= 3 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'beforeunload' &&
                             eventStack[2].event === 'beforeunload') {
@@ -95,6 +98,7 @@
                     detectApp();
                 });
 
+                /*
                 window.addEventListener("pagehide", () => {
                     eventStack.push({
                         event: 'pagehide',
@@ -102,6 +106,7 @@
                     });
                     detectApp();
                 });
+               */
 
                 document.addEventListener('click', () => {
                     eventStack.push({
