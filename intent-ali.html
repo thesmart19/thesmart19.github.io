@@ -6,7 +6,7 @@
     <title>Intent</title>
 </head>
 <body>
-    <h1>Intent</h1>
+    <h1>Aliexpress Android Intent</h1>
     <a href="">Click me</a>
     <h3></h3>
 
@@ -56,6 +56,7 @@
 
                 document.addEventListener("visibilitychange", () => {
                     visibilityStack.push(document.visibilityState);
+                    document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
                 });
 
                 window.addEventListener('hashchange', () => {
@@ -63,7 +64,7 @@
                 });
 
                 window.addEventListener('focus', () => {
-                    document.querySelector('h3').innerText = `[${visibilityStack.join(',')}]`;
+                    document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
                 });
 
                 document.location.href = intentURI;
