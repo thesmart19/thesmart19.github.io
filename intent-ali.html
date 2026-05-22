@@ -42,6 +42,10 @@
 
             if (shouldIntent) {
                 document.location.href = intentURI;
+
+                document.addEventListener('click', () => {
+                    document.location.href = intentURI;
+                });
             }
         })()
     </script>
