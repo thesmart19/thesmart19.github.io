@@ -18,54 +18,33 @@
 
             let intentURI = 'intent://#Intent;'
             intentURI += `package=${intentPackage};`
+            // intentURI += `action=android.intent.action.VIEW;`
+            intentURI += `category=android.intent.category.BROWSABLE;`
             intentURI += `scheme=${intentScheme};`
             intentURI += `S.browser_fallback_url=${encodeURIComponent(intentUrlFallback)};`
             intentURI += 'end;'
 
             const visibilityStack = [];
 
-            const regex = {
-                android: 'android',
-                fb: 'FBAV',
-                fbmessenger: 'FBAN/Messenger',
-                instagram: 'Instagram',
-                twitter: 'Twitter',
-                webview: 'webview|; wv\\)',
-            }
+            document.querySelector('a').href = intentURI;
 
-            function is(pattern) {
-                return Boolean(navigator.userAgent.match(new RegExp(pattern, 'ig')))
-            }
+            document.querySelector('a').addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-            const isAndroidWebView = is(regex.webview);
-            const isFacebookBrowser = is(regex.fb);
-            const isFacebookMessenger = is(regex.fbmessenger);
-            const isTwitter = is(regex.twitter);
-            const isInstagram = is(regex.instagram);
+                document.location.href = e.target.href;
+            });
 
-            const shouldIntent = isAndroidWebView || isFacebookBrowser || isFacebookMessenger || isInstagram || isTwitter
+            document.addEventListener("visibilitychange", () => {
+                visibilityStack.push(document.visibilityState);
+                document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
+            });
 
-            if (shouldIntent) {
-                document.querySelector('a').href = intentURI;
+            window.addEventListener('hashchange', () => {
+                document.querySelector('h3').innerText += `[hash has changed]`;
+            });
 
-                document.querySelector('a').addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    document.location.href = e.target.href;
-                });
-
-                document.addEventListener("visibilitychange", () => {
-                    visibilityStack.push(document.visibilityState);
-                    document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
-                });
-
-                window.addEventListener('hashchange', () => {
-                    document.querySelector('h3').innerText += `[hash has changed]`;
-                });
-
-                document.location.href = intentURI;
-            }
+            document.location.href = intentURI;
         })()
     </script>
 </html>
