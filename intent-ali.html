@@ -46,8 +46,9 @@
             const isChrome = chromeVersion && !isYandexBrowser;
 
             if (isAndroid) {
+                document.querySelector('h3').innerText += 'Browser:' + (isChrome ? 'Chrome' : isAndroidWebView ? 'Android WebView' : 'Other') + ' ';
+
                 function detectApp() {
-                    document.querySelector('h3').innerText += 'Browser:' + (isChrome ? 'Chrome' : isAndroidWebView ? 'Android WebView' : 'Other') + ' ';
                     document.querySelector('pre').innerText = JSON.stringify(eventStack);
                     if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
