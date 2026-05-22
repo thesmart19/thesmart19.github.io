@@ -40,11 +40,16 @@
                 document.querySelector('h3').innerText += `[${visibilityStack.join(',')}]`;
             });
 
+            window.addEventListener("pagehide", (event) => {
+                alert('pagehide');
+            });
+
+
             window.addEventListener('hashchange', () => {
                 document.querySelector('h3').innerText += `[hash has changed]`;
             });
 
-            
+
             document.addEventListener('click', () => {
                 document.location.href = intentURI;
             });
