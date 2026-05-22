@@ -50,7 +50,7 @@
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
                 function detectApp() {
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
@@ -66,6 +66,9 @@
                         // hidden
 
                         // emulator
+                        // click
+                        // beforeunload
+
                         if (eventStack.length >= 3 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'pagehide' &&
@@ -93,7 +96,7 @@
                         event: 'beforeunload',
                         time: Date.now(),
                     });
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                 });
 
                 window.addEventListener("pagehide", () => {
@@ -101,7 +104,7 @@
                         event: 'pagehide',
                         time: Date.now(),
                     });
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                 });
 
                 document.addEventListener('click', () => {
@@ -109,7 +112,7 @@
                         event: 'click',
                         time: Date.now(),
                     });
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack);
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     document.location.href = intentURI;
                 });
             } else {
