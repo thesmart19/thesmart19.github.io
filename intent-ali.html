@@ -9,6 +9,7 @@
     <h1>Aliexpress Android Intent</h1>
     <h2>Click to open Aliexpress app</h2>
     <h3></h3>
+    <h4></h4>
     Event stack:
     <pre></pre>
 
@@ -54,14 +55,14 @@
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'hidden') {
-                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.';
+                            document.querySelector('h4').innerText += 'Failed to open the Aliexpress app.';
                         }
                     } else if (isChrome) {
                         if (eventStack.length >= 3 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'pagehide' &&
                             eventStack[2].event === 'hidden') {
-                            document.querySelector('h3').innerText += 'Failed to open the Aliexpress app.';
+                            document.querySelector('h4').innerText += 'Failed to open the Aliexpress app.';
                         }
                     }
                 }
