@@ -49,8 +49,11 @@
             if (isAndroid) {
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
+                if (window.localStorage) {
+                    document.querySelector('pre').innerText = window.localStorage.getItem('eventStack') || '[]';
+                }
+
                 function detectApp() {
-                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
@@ -87,6 +90,11 @@
                         event: document.visibilityState,
                         time: Date.now(),
                     });
+                    if (window.localStorage) {
+                        window.localStorage.setItem('eventStack', JSON.stringify(eventStack));
+                    }
+
+                    document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
 
                     detectApp();
                 });
@@ -96,6 +104,10 @@
                         event: 'beforeunload',
                         time: Date.now(),
                     });
+                    if (window.localStorage) {
+                        window.localStorage.setItem('eventStack', JSON.stringify(eventStack));
+                    }
+
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                 });
 
@@ -104,6 +116,10 @@
                         event: 'pagehide',
                         time: Date.now(),
                     });
+                    if (window.localStorage) {
+                        window.localStorage.setItem('eventStack', JSON.stringify(eventStack));
+                    }
+
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                 });
 
@@ -112,6 +128,10 @@
                         event: 'click',
                         time: Date.now(),
                     });
+                    if (window.localStorage) {
+                        window.localStorage.setItem('eventStack', JSON.stringify(eventStack));
+                    }
+
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     document.location.href = intentURI;
                 });
