@@ -41,17 +41,12 @@
             });
 
             window.addEventListener("pagehide", (event) => {
-                alert('pagehide');
+                document.querySelector('h3').innerText += `[pagehide]`;
             });
 
             window.addEventListener("beforeunload", (event) => {
-                alert('beforeunload');
+                document.querySelector('h3').innerText += `[beforeunload]`;
             });
-
-            window.addEventListener('hashchange', () => {
-                document.querySelector('h3').innerText += `[hash has changed]`;
-            });
-
 
             document.addEventListener('click', () => {
                 document.location.href = intentURI;
