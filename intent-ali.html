@@ -47,8 +47,11 @@
             const isChrome = chromeVersion && !isYandexBrowser;
 
             if (isAndroid) {
-                console.log('AndroidBridge', window.AndroidBridge);
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
+
+                if (isAndroidWebView && window.AndroidBridge) {
+                    console.log(window.AndroidBridge.getIntentData());
+                }
 
                 function detectApp() {
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
