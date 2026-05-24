@@ -49,12 +49,6 @@
             if (isAndroid) {
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
-                if (isAndroidWebView && window.AndroidBridge) {
-                    for (const key in window.AndroidBridge) {
-                        console.log(key, window.AndroidBridge[key])
-                    }
-                }
-
                 function detectApp() {
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     if (isAndroidWebView) {
@@ -104,10 +98,20 @@
                     detectApp();
                 });
 
-                window.addEventListener("pagehide", () => {
+                window.addEventListener("blur", () => {
                     if (isAndroidWebView) {
                         eventStack.push({
-                            event: 'pagehide',
+                            event: 'blur',
+                            time: Date.now(),
+                        });
+                        detectApp();
+                    }
+                });
+
+                window.addEventListener("focus", () => {
+                    if (isAndroidWebView) {
+                        eventStack.push({
+                            event: 'focus',
                             time: Date.now(),
                         });
                         detectApp();
