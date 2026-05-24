@@ -98,15 +98,15 @@
                     detectApp();
                 });
 
-                /*
                 window.addEventListener("pagehide", () => {
-                    eventStack.push({
-                        event: 'pagehide',
-                        time: Date.now(),
-                    });
-                    detectApp();
+                    if (isAndroidWebView) {
+                        eventStack.push({
+                            event: 'pagehide',
+                            time: Date.now(),
+                        });
+                        detectApp();
+                    }
                 });
-               */
 
                 document.addEventListener('click', () => {
                     eventStack.push({
