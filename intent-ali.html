@@ -54,7 +54,8 @@
                     if (isAndroidWebView) {
                         if (eventStack.length >= 2 &&
                             eventStack[0].event === 'click' &&
-                            eventStack[1].event === 'hidden') {
+                            eventStack[1].event === 'beforeunload' &&
+                            eventStack[2].event === 'hidden') {
                             document.querySelector('h4').innerText = 'Trying to open the Aliexpress app...';
                         }
                     } else if (isChrome) {
@@ -98,39 +99,13 @@
                     detectApp();
                 });
 
-                window.addEventListener("blur", () => {
-                    if (isAndroidWebView) {
-                        eventStack.push({
-                            event: 'blur',
-                            time: Date.now(),
-                        });
-                        detectApp();
-                    }
-                });
-
-                window.addEventListener("focus", () => {
-                    if (isAndroidWebView) {
-                        eventStack.push({
-                            event: 'focus',
-                            time: Date.now(),
-                        });
-                        detectApp();
-                    }
-                });
-
                 document.addEventListener('click', () => {
                     eventStack.push({
                         event: 'click',
                         time: Date.now(),
                     });
                     detectApp();
-                    if (isAndroidWebView) {
-                        const w = window.open(intentURI, '_blank');
-                        console.log('window', w);
-                        console.log('window closed', w.closed);
-                    } else if (isChrome) {
-                        document.location.href = intentURI;
-                    }
+                    document.location.href = intentURI;
                 });
 
                 detectApp();
