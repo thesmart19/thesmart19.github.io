@@ -50,7 +50,9 @@
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
                 if (isAndroidWebView && window.AndroidBridge) {
-                    console.log(window.AndroidBridge.getIntentData());
+                    for (const key in window.AndroidBridge) {
+                        console.log(key, window.AndroidBridge[key])
+                    }
                 }
 
                 function detectApp() {
