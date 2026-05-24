@@ -49,6 +49,20 @@
             if (isAndroid) {
                 document.querySelector('h3').innerText += 'Browser:' + (isAndroidWebView ? 'Android WebView' : isChrome ? 'Chrome' : 'Other');
 
+                document.querySelector('h3').innerText += ' Event pagehide is'
+                if ('onpagehide' in window) {
+                    document.querySelector('h3').innerText += ' supported.';
+                } else {
+                    document.querySelector('h3').innerText += ' not supported.';
+                }
+
+                document.querySelector('h3').innerText += ' Event freeze is'
+                if ('onfreeze' in window) {
+                    document.querySelector('h3').innerText += ' supported.';
+                } else {
+                    document.querySelector('h3').innerText += ' not supported.';
+                }
+
                 function detectApp() {
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     if (isAndroidWebView) {
