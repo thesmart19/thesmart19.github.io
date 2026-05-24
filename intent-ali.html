@@ -52,7 +52,7 @@
                 function detectApp() {
                     document.querySelector('pre').innerText = JSON.stringify(eventStack, null, 2);
                     if (isAndroidWebView) {
-                        if (eventStack.length >= 2 &&
+                        if (eventStack.length >= 3 &&
                             eventStack[0].event === 'click' &&
                             eventStack[1].event === 'beforeunload' &&
                             eventStack[2].event === 'hidden') {
