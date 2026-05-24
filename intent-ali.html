@@ -114,7 +114,13 @@
                         time: Date.now(),
                     });
                     detectApp();
-                    document.location.href = intentURI;
+                    if (isAndroidWebView) {
+                        const w = window.open(intentURI, '_blank');
+                        console.log('window', w);
+                        console.log('window closed', w.closed);
+                    } else if (isChrome) {
+                        document.location.href = intentURI;
+                    }
                 });
 
                 detectApp();
