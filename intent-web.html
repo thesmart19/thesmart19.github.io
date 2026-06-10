@@ -15,14 +15,12 @@
 
     <script>
         (() => {
-            const intentPackage = 'com.android.chrome';
             const intentScheme = 'https';
-            const intentUrl = 'https://www.google.com/search?q=succes';
-            const intentUrlFallback = 'https://www.google.com/search?q=what+is+chrome+intent+fallback+url';
+            const intentUrl = 'https://www.google.com/search?q=success';
+            const intentUrlFallback = 'https://www.google.com/search?q=fallback+url';
             let eventStack = [];
 
             let intentURI = `intent://${intentUrl.replace(/^(http(s)?(:)?)?\/\//, '')}#Intent;`
-            intentURI += `package=${intentPackage};`
             intentURI += `action=android.intent.action.VIEW;`
             intentURI += `category=android.intent.category.BROWSABLE;`
             intentURI += `scheme=${intentScheme};`
