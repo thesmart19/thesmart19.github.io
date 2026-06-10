@@ -21,7 +21,7 @@
             const intentUrlFallback = 'https://www.google.com/search?q=what+is+chrome+intent+fallback+url';
             let eventStack = [];
 
-            let intentURI = `intent://${intentUrl}#Intent;`
+            let intentURI = `intent://${intentUrl.replace(/^(http(s)?(:)?)?\/\//, '')}#Intent;`
             intentURI += `package=${intentPackage};`
             intentURI += `action=android.intent.action.VIEW;`
             intentURI += `category=android.intent.category.BROWSABLE;`
