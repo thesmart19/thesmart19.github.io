@@ -17,10 +17,11 @@
         (() => {
             const intentPackage = 'com.android.chrome';
             const intentScheme = 'https';
+            const intentUrl = 'https://www.google.com/search?q=succes';
             const intentUrlFallback = 'https://www.google.com/search?q=what+is+chrome+intent+fallback+url';
             let eventStack = [];
 
-            let intentURI = 'intent://#Intent;'
+            let intentURI = `intent://${intentUrl}#Intent;`
             intentURI += `package=${intentPackage};`
             intentURI += `action=android.intent.action.VIEW;`
             intentURI += `category=android.intent.category.BROWSABLE;`
